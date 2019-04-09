@@ -1,0 +1,96 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * NderhyrjetKrasitje
+ *
+ * @ORM\Table(name="nderhyrjet_krasitje", indexes={@ORM\Index(name="fk_tipi_krasitjes_idx", columns={"tipi_krasitjes"}), @ORM\Index(name="fk_menyra_eleminimit_idx", columns={"menyra_eliminimit"}), @ORM\Index(name="fk_mjetet_perdorura_idx", columns={"mjetet_perdorura"}), @ORM\Index(name="fk_krasitje_parcela_idx", columns={"parcela"}), @ORM\Index(name="fk_produkti_dizinfektues_idx", columns={"produkti_dizinfektim"})})
+ * @ORM\Entity
+ */
+class NderhyrjetKrasitje
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="kohezgjatja", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $kohezgjatja;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_eliminimi_mbetjeve", type="date", nullable=true)
+     */
+    private $dataEliminimiMbetjeve;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="vezhgime", type="string", length=150, nullable=true)
+     */
+    private $vezhgime;
+
+    /**
+     * @var \SettingsTipiKrasitjes
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsTipiKrasitjes")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="tipi_krasitjes", referencedColumnName="id")
+     * })
+     */
+    private $tipiKrasitjes;
+
+    /**
+     * @var \SettingsMenyraEleminimit
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsMenyraEleminimit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="menyra_eliminimit", referencedColumnName="id")
+     * })
+     */
+    private $menyraEliminimit;
+
+    /**
+     * @var \SettingsMjete
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsMjete")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="mjetet_perdorura", referencedColumnName="id")
+     * })
+     */
+    private $mjetetPerdorura;
+
+    /**
+     * @var \ParcelaIdentifikimi
+     *
+     * @ORM\ManyToOne(targetEntity="ParcelaIdentifikimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parcela", referencedColumnName="id")
+     * })
+     */
+    private $parcela;
+
+    /**
+     * @var \SettingsKrasitjeProduktiDizinfektues
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsKrasitjeProduktiDizinfektues")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="produkti_dizinfektim", referencedColumnName="id")
+     * })
+     */
+    private $produktiDizinfektim;
+
+
+}

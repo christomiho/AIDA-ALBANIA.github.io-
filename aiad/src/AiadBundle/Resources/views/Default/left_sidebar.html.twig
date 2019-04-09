@@ -1,0 +1,443 @@
+<style>
+    .header{
+        text-transform: uppercase;
+        color: #848484;
+        background: rgba(186, 188, 193, 0.41) !important;
+        text-align: center;
+        font-weight: bold;
+    }
+</style>
+
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="{{ asset('assets/') }}dist/img/user-img.png" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>{{ app.user.name }} {{ app.user.surname }}</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <!--<li class="header">MAIN NAVIGATION</li>-->
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard" style="color: #00a65a"></i> <span>Parcela</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ path('listo_parcelat') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i>Listo parcelat</a></li>
+                    <li class="active"><a href="{{ path('parcelaagronomike_index') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i>Të dhënat agronomike</a></li>
+                    <li class="active"><a href="{{ path('parcelakultivari_index') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i>Parcela kultivari</a></li>
+
+                </ul>
+            </li>
+            {% if is_granted('ROLE_OPERATOR') %}
+            {% if app.session.get('parcelId') is empty %}
+            {% else %}
+            <li class="header">TE DHëNAT E MOSTRAVE</li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-bug"></i>
+                    <span>Mostrat</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Akariosis <i class="fa fa-angle-left pull-right"></i></a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostraakariosis_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostraakariosis_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Barrenijo <i class="fa fa-angle-left pull-right"></i></a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostrabarrenijo_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostrabarrenijo_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Euzolera <i class="fa fa-angle-left pull-right"></i></a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostraeuzolera_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostraeuzolera_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Fenologjia <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostrafenologjia_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostrafenologjia_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Glifodes <i class="fa fa-angle-left pull-right"></i></a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostraglifodes_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostraglifodes_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Insekte të tjerë <i class="fa fa-angle-left pull-right"></i></a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostrainsektetjera_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostrainsektetjera_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Kalimi i pragut <i class="fa fa-angle-left pull-right"></i></a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostrakalimipragut_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostrakalimipragut_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Kërpudha të tjera <i class="fa fa-angle-left pull-right"></i></a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostrasemundjetjera_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostrasemundjetjera_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Kocinija <i class="fa fa-angle-left pull-right"></i></a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostrakocinija_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostrakocinija_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Lastarë të rinj <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostralastarerinj_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostralastarerinj_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Miza biologjike <i class="fa fa-angle-left pull-right"></i></a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostramizabiologjike_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostramizabiologjike_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Miza e ullirit <i class="fa fa-angle-left pull-right"></i></a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostramizaullirit_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostramizaullirit_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Negrija <i class="fa fa-angle-left pull-right"></i></a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostranegrija_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostranegrija_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Nematoda <i class="fa fa-angle-left pull-right"></i></a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostranematodat_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostranematodat_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Otiorrinko <i class="fa fa-angle-left pull-right"></i></a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostraotiorrinko_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostraotiorrinko_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Prais Antofage <i class="fa fa-angle-left pull-right"></i></a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostrapraisantofage_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostrapraisantofage_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Prais Filofage <i class="fa fa-angle-left pull-right"></i></a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostrapraisfilofage_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostrapraisfilofage_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Prais Karpofage <i class="fa fa-angle-left pull-right"></i></a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostrapraiskarpofage_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostrapraiskarpofage_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Prais Stadi Larvor <i class="fa fa-angle-left pull-right"></i></a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostrapraisstadilarvor_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostrapraisstadilarvor_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Prodhimi i parashikuar <i class="fa fa-angle-left pull-right"></i></a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostraprodhimiparashikuar_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostraprodhimiparashikuar_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Syri i palloit <i class="fa fa-angle-left pull-right"></i></a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostrasyripalloit_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostrasyripalloit_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Verticilium <i class="fa fa-angle-left pull-right"></i></a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostraverticilium_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostraverticilium_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o"></i> Të tjera ndihmëse <i class="fa fa-angle-left pull-right"></i></a>
+
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('mostratjerandihmese_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('mostratjerandihmese_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </li>
+
+            <li class="header">APLIKIME</li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="glyphicon glyphicon-tint"></i>
+                    <span>Aplikime Sëmundje</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ path('newAplikimSemundje') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                    <li><a href="{{ path('tabelapermbledheseaplikimsemundjesh_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="glyphicon glyphicon-leaf"></i>
+                    <span>Aplikime Plehërimi</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-circle-o"></i> Plehërimi gjethor <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('aplikimi_pleherimi_form') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('aplikimi_pleherimi_lista') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="header">NDëRHYRJE</li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-scissors"></i> <span>Ndërhyrjet</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-circle-o"></i> Eleminimi i mbetjeve <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('nderhyrjeteliminimimbetjes_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('nderhyrjeteliminimimbetjes_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-circle-o"></i> Grackat masive <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('nderhyrjetgrackamasive_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('nderhyrjetgrackamasive_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-circle-o"></i> Krasitje <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('nderhyrjetkrasitje_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('nderhyrjetkrasitje_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-circle-o"></i> Mbulesa e tokës <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('nderhyrjetmbulesatokes_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('nderhyrjetmbulesatokes_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-circle-o"></i> Punimi i tokës <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('nderhyrjetpunimitokes_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('nderhyrjetpunimitokes_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-circle-o"></i> Ujitje <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('nderhyrjetujitje_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('nderhyrjetujitje_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-circle-o"></i> Vjelja <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ path('nderhyrjetvjelja_new') }}"><i class="glyphicon glyphicon-circle-arrow-right"></i> Shto të re</a></li>
+                            <li><a href="{{ path('nderhyrjetvjelja_index') }}"><i class="glyphicon glyphicon-tasks"></i> Historiku</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="header">RAPORTE</li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-table"></i>
+                    <span>Raporte</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ path('raportMostra') }}"><i class="fa fa-file-text"></i> Raport Mostra</a></li>
+                    {#<li><a href="#"><i class="fa fa-file-text"></i> Raport Semundje</a></li>#}
+                    {#<li><a href="#"><i class="fa fa-file-text"></i> Raport Pleherimi</a></li>#}
+                    <li><a href="{{ path('raportNderhyrje') }}"><i class="fa fa-file-text"></i> Raport Ndërhyrje</a></li>
+                </ul>
+            </li>
+
+            <li class="header">HARTA</li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="glyphicon glyphicon-map-marker"></i>
+                    <span>Harta</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ path('hartaParcela') }}"><i class="glyphicon glyphicon-tasks"></i> Shiko hartën</a></li>
+                    <li><a href="{{ path('setAlert') }}"><i class="glyphicon glyphicon-tasks"></i> Vendos gjendjen</a></li>
+                </ul>
+            </li>
+            <!--<li class="header">LABELS</li>-->
+            <!--<li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>-->
+            <!--<li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>-->
+            <!--<li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>-->
+        {% endif %}
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <li class="header">PARCELA-OPERATOR</li>
+                    <li>
+                        <a href="{{ path('assign_parcels_to_user') }}">
+                            <i class="glyphicon glyphicon-paperclip"></i>Përcakto parcela për operator
+                        </a>
+                    </li>
+            </li>
+            <li class="header">Përdoruesit</li>
+                <li>
+                    <a href="{{ path('perdoruesList') }}">
+                        <i class="glyphicon glyphicon-list"></i>
+                        Lista e përdoruesve
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('perdoruesNew') }}">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        Shto përdorues të ri
+                    </a>
+                </li>
+            </li>
+            <li class="header">HARTA</li>
+                <li>
+                    <a href="{{ path('hartaParcela') }}">
+                        <i class="glyphicon glyphicon-map-marker"></i> Shiko hartën
+                    </a>
+                </li>
+
+        {% endif %}
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

@@ -1,0 +1,79 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Aplikime Semundje</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Të Dhëna</h3>
+                        <div class="box-tools pull-right">
+
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table style="text-align: center" class="table table-responsive" id="dataTables-2">
+                            <thead>
+            <tr>
+                <th class='nr_column_first'>#</th>
+                <th>Data e aplikimit</th>
+                <th>Lloji i aplikimit</th>
+                <th>Produkti komercial</th>
+                <th>Materiali aktiv (pastertia)</th>
+                <th>Arsyeja 1</th>
+                <th>Arsyeja 2</th>
+                <th>Justifikimi</th>
+                <th>Vezhgime</th>
+                <th>Modifiko</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% set i=1 %}
+        {% for aplikimeSemundjeTedhena in aplikimeSemundjeTedhenas %}
+            <tr>
+                <td><a href="">{{ i }}</a></td>
+                <td>{% if aplikimeSemundjeTedhena.dataAplikimit %}{{ aplikimeSemundjeTedhena.dataAplikimit|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ aplikimeSemundjeTedhena.llojiAplikimit }}</td>
+                <td>{{ aplikimeSemundjeTedhena.produktiKomercialEmri }}</td>
+                <td>{{ aplikimeSemundjeTedhena.getProduktiKomercialEmri().getLendaAktive() }} ( {{aplikimeSemundjeTedhena.getProduktiKomercialEmri().getPastertia() }} %)</td>
+                <td>{{ aplikimeSemundjeTedhena.getArsyejaAplikimit1() }}</td>
+                <td>{{ aplikimeSemundjeTedhena.getArsyejaAplikimit2() }}</td>
+                <td>{{ aplikimeSemundjeTedhena.getJustifikimi() }}</td>
+                <td>{{ aplikimeSemundjeTedhena.vezhgime }}</td>
+                <td>
+                    <a href="{{ path('aplikimesemundjetedhena_edit', { 'id': aplikimeSemundjeTedhena.id }) }}"><i class="glyphicon glyphicon-edit"></i> </a>
+                </td>
+            </tr>
+            {% set i=i+1 %}
+        {% endfor %}
+        </tbody>
+                        </table>
+                    </div><!-- /.table-responsive -->
+
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div>
+    </section><!-- Main content -->
+</div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(function(){
+            $('#dataTables-2').DataTable({
+            });
+        });
+    </script>
+{% endblock %}

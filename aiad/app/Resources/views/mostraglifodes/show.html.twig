@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>MostraGlifodes</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mostraGlifode.id }}</td>
+            </tr>
+            <tr>
+                <th>Dataglifodes</th>
+                <td>{% if mostraGlifode.dataGlifodes %}{{ mostraGlifode.dataGlifodes|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Ratioterriturgrackadite</th>
+                <td>{{ mostraGlifode.ratioTerriturGrackadite }}</td>
+            </tr>
+            <tr>
+                <th>Perqindjedegezaprekur</th>
+                <td>{{ mostraGlifode.perqindjeDegezaprekur }}</td>
+            </tr>
+            <tr>
+                <th>Perqindjelastarprekur</th>
+                <td>{{ mostraGlifode.perqindjeLastarprekur }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mostraglifodes_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('mostraglifodes_edit', { 'id': mostraGlifode.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

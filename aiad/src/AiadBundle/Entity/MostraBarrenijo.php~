@@ -1,0 +1,70 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * MostraBarrenijo
+ *
+ * @ORM\Table(name="mostra_barrenijo", indexes={@ORM\Index(name="fk_parcela_barrenijo_idx", columns={"parcela"})})
+ * @ORM\Entity
+ */
+class MostraBarrenijo
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_barrenijo", type="date", nullable=true)
+     */
+    private $dataBarrenijo;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_vrimahyrje_njesimostre", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioVrimahyrjeNjesimostre;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_vrimadalje_njesimostre", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioVrimadaljeNjesimostre;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="perqindje_lastarprekur", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $perqindjeLastarprekur;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_lastarprekur_formagjalla", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioLastarprekurFormagjalla;
+
+    /**
+     * @var \ParcelaIdentifikimi
+     *
+     * @ORM\ManyToOne(targetEntity="ParcelaIdentifikimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parcela", referencedColumnName="id")
+     * })
+     */
+    private $parcela;
+
+
+}

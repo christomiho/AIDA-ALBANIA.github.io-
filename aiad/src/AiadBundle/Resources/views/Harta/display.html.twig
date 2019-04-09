@@ -1,0 +1,103 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    {#<section class="content-header">#}
+        {#<h1> Harta</h1>#}
+    {#</section>#}
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Harta</h3>
+                        <div class="box-tools pull-right">
+                            {#<a class="btn btn-info pull-left" href="{{ path('kultivaret_new') }}">Shto te Re</a>#}
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+
+                        <div class="col-md-12" style="height: 500px;" id="map">
+
+                        </div>
+
+
+
+                    </div>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div>
+    </section><!-- Main content -->
+</div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+
+    {#<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>#}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAR1Pknl8OxTbhw5QmrY5PL4vThtx3dYvU"></script>
+
+    <script type="text/javascript">
+        $(function() {
+
+                    // **** CREATE GOOGLE MAP ****
+                    var mapCenter = new google.maps.LatLng(41.299, 19.82);
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        'zoom': 8,
+                        'center': mapCenter,
+                        'mapTypeId': google.maps.MapTypeId.ROADMAP
+                    });
+
+                    {% for row in alerts %}
+
+                    drawProjectOnMap(map,{{ row.getParcel().getKordinataX()|raw }},{{ row.getParcel().getKordinataY()|raw }},{{ row.getRadius()|raw}},"{{ row.getMessage()|raw }}",{{ row.getCircleColor() }}, this);
+                    {% endfor %}
+//                    drawProjectOnMap(map,40.87,19.52,4000, this);
+                }
+        );
+
+
+        var infowindow = new google.maps.InfoWindow({
+            maxWidth: 160
+        });
+       // var i=0;
+        var ngjyrat=['#e60000','#32F518','#ff9900'];
+        function drawProjectOnMap(map, x, y, radius, message, i)
+        {
+            var index=parseInt(i)-1;
+            var marker = new google.maps.Marker({
+                map: map,
+                position: new google.maps.LatLng(parseFloat(x), parseFloat(y)),
+                title: "Klikoni mbi marker per te pare njoftimin"//ky do jet mesazhi i guess
+            });
+
+            google.maps.event.addListener(marker, 'click', (function(marker) {
+                return function() {
+                    infowindow.setContent(message);
+                    infowindow.open(map, marker);
+                }
+            })(marker));
+
+            // Add circle overlay and bind to marker (radius in metres)
+            var circle = new google.maps.Circle({
+                map: map,
+                radius: parseInt(radius),
+                fillColor: ngjyrat[index],
+                strokeColor: '#e4af23'
+            });
+            circle.bindTo('center', marker, 'position');
+//i++;
+
+        }
+
+
+    </script>
+
+{% endblock %}

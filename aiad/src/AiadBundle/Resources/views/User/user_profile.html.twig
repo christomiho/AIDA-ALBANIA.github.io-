@@ -1,0 +1,78 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1> Përdorues Modifikim</h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <!-- TABLE: LATEST ORDERS -->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Modifiko Profilin</h3>
+                            <div class="box-tools pull-right">
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <form role="form" method="post" action="{{ path ('userProfile', {'id': id}) }}">
+                                <div class="box-body">
+                                    <div class="form-group col-md-12">
+                                        <label for="emri">Emri </label>
+                                        <input type="text" class="form-control" id="emri" name="name" value="{% if flag==1 or flag==2 %}{{ data['name'] }}{% endif %}" placeholder="Emri i Perdoruesit" >
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="mbiemri">Mbiemri</label>
+                                        <input type="text" class="form-control" id="mbiemri" name="surname" value="{% if flag==1 or flag==2 %}{{ data['surname'] }}{% endif %}" placeholder="Mbiemri i Perdoruesit">
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        {% if flag==2 %}<p style="color: red">Ky perdorues ekziston</p>{% endif %}
+                                        <label for="username">Username </label>
+                                        <input type="text" class="form-control" id="username" name="username" value="{% if flag==1 or flag==2 %}{{ data['username'] }}{% endif %}" placeholder="Username">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password"  placeholder="Fjalëkalimi">
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="email">E-mail</label>
+                                        <input type="email" class="form-control" id="email" name="email"  value="{% if flag==1 or flag==2 %}{{ data['email'] }}{% endif %}" placeholder="Email i Perdoruesit">
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="address">Adresa</label>
+                                        <input type="text" class="form-control" id="address" name="address" value="{% if flag==1 or flag==2 %}{{ data['adresa'] }}{% endif %}" placeholder="Adresa e perdoruesit">
+                                    </div>
+
+                                </div>
+
+                                <!-- /.box-body -->
+
+                                <div class="box-footer">
+                                    <button type="submit" name="submit" class="btn btn-success">Modifiko Profilin</button>
+                                </div>
+                            </form>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div>
+            </div>
+        </section><!-- Main content -->
+    </div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+
+
+
+{% endblock %}

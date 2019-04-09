@@ -1,0 +1,83 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * NderhyrjetMbulesaTokes
+ *
+ * @ORM\Table(name="nderhyrjet_mbulesa_tokes", indexes={@ORM\Index(name="fk_menyra_eleminimit_mbuleses_idx", columns={"menyra_eliminimit"}), @ORM\Index(name="fk_mbulesa_tokes_parcela_idx", columns={"parcela"}), @ORM\Index(name="fk_specia_mbjellur_idx", columns={"specia_mbjelle"})})
+ * @ORM\Entity
+ */
+class NderhyrjetMbulesaTokes
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="doza_mbjelljes", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $dozaMbjelljes;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="sip_mbjelljes", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $sipMbjelljes;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_eliminimit", type="date", nullable=true)
+     */
+    private $dataEliminimit;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="vezhgime", type="string", length=200, nullable=true)
+     */
+    private $vezhgime;
+
+    /**
+     * @var \SettingsMenyraEleminimit
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsMenyraEleminimit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="menyra_eliminimit", referencedColumnName="id")
+     * })
+     */
+    private $menyraEliminimit;
+
+    /**
+     * @var \ParcelaIdentifikimi
+     *
+     * @ORM\ManyToOne(targetEntity="ParcelaIdentifikimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parcela", referencedColumnName="id")
+     * })
+     */
+    private $parcela;
+
+    /**
+     * @var \SettingsMtokesSpeciamb
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsMtokesSpeciamb")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="specia_mbjelle", referencedColumnName="id")
+     * })
+     */
+    private $speciaMbjelle;
+
+
+}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>SettingsFormaKurores</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ settingsFormaKurore.id }}</td>
+            </tr>
+            <tr>
+                <th>Formakurores</th>
+                <td>{{ settingsFormaKurore.formaKurores }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('settingsformakurores_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('settingsformakurores_edit', { 'id': settingsFormaKurore.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

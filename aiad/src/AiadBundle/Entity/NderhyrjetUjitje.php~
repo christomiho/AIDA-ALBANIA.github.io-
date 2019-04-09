@@ -1,0 +1,96 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * NderhyrjetUjitje
+ *
+ * @ORM\Table(name="nderhyrjet_ujitje", indexes={@ORM\Index(name="fk_nderhyrje_origjina_ujit_idx", columns={"origjina_ujit"}), @ORM\Index(name="fk_nderhyrje_cilesia_ujit_idx", columns={"cilesia_ujit"}), @ORM\Index(name="fk_nderhyrje_arsyeja_ujitjes_idx", columns={"arsyeja_ujitjes"}), @ORM\Index(name="fk_nderhyrje_ujitje_parcela_idx", columns={"parcela"}), @ORM\Index(name="fk_nderhyrje_sistemi_ujitjes_idx", columns={"sistemi_ujitjes"})})
+ * @ORM\Entity
+ */
+class NderhyrjetUjitje
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_ujitjes", type="date", nullable=true)
+     */
+    private $dataUjitjes;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="sasia_ujit", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $sasiaUjit;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="vezhgime", type="string", length=200, nullable=true)
+     */
+    private $vezhgime;
+
+    /**
+     * @var \SettingsOrigjinaUjit
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsOrigjinaUjit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="origjina_ujit", referencedColumnName="id")
+     * })
+     */
+    private $origjinaUjit;
+
+    /**
+     * @var \SettingsCilesiaUjit
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsCilesiaUjit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cilesia_ujit", referencedColumnName="id")
+     * })
+     */
+    private $cilesiaUjit;
+
+    /**
+     * @var \SettingsArsyeUjitje
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsArsyeUjitje")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="arsyeja_ujitjes", referencedColumnName="id")
+     * })
+     */
+    private $arsyejaUjitjes;
+
+    /**
+     * @var \ParcelaIdentifikimi
+     *
+     * @ORM\ManyToOne(targetEntity="ParcelaIdentifikimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parcela", referencedColumnName="id")
+     * })
+     */
+    private $parcela;
+
+    /**
+     * @var \SettingsSistemiUjitjes
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsSistemiUjitjes")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="sistemi_ujitjes", referencedColumnName="id")
+     * })
+     */
+    private $sistemiUjitjes;
+
+
+}

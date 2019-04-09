@@ -1,0 +1,91 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TabelaPermbledheseAplikimSemundjesh
+ *
+ * @ORM\Table(name="tabela_permbledhese_aplikim_semundjesh", indexes={@ORM\Index(name="fk_parcela_perkatese_idx", columns={"parcela"})})
+ * @ORM\Entity
+ */
+class TabelaPermbledheseAplikimSemundjesh
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_trajnimit", type="date", nullable=true)
+     */
+    private $dataTrajnimit;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="numri_aplikimit", type="integer", nullable=true)
+     */
+    private $numriAplikimit;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="sasia_trajtimit", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $sasiaTrajtimit;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="shperndarja_trajtimit", type="integer", nullable=true)
+     */
+    private $shperndarjaTrajtimit;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="siperfaqja_trajtuar_hektar", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $siperfaqjaTrajtuarHektar;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="siperfaqja_trajtuar_perqindje", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $siperfaqjaTrajtuarPerqindje;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="presioni_trajtimit", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $presioniTrajtimit;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="shpejtesia_trajtimit", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $shpejtesiaTrajtimit;
+
+    /**
+     * @var \ParcelaIdentifikimi
+     *
+     * @ORM\ManyToOne(targetEntity="ParcelaIdentifikimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parcela", referencedColumnName="id")
+     * })
+     */
+    private $parcela;
+
+
+}

@@ -1,0 +1,68 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Konfigurime</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Nr i këmbëve për pemë</h3>
+                        <div class="box-tools pull-right">
+                            <a class="btn btn-info pull-left" href="{{ path('settingskembepeme_new') }}">Shto të re</a>
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table style="text-align: center" class="table table-responsive" id="dataTables-2">
+        <thead>
+            <tr>
+                <th class='nr_column_first'>#</th>
+                <th>Nr i këmbëve për pemë</th>
+                <th>Modifiko</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% set i=1 %}
+        {% for settingsKembePeme in settingsKembePemes %}
+            <tr>
+                <td>{{ i }}</td>
+                <td>{{ settingsKembePeme.nrKembePeme }}</td>
+                <td style="text-align: center">
+
+                            <a href="{{ path('settingskembepeme_edit', { 'id': settingsKembePeme.id }) }}">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </a>
+                </td>
+            </tr>
+            {% set i=i+1 %}
+        {% endfor %}
+        </tbody>
+                        </table>
+                    </div><!-- /.table-responsive -->
+
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div>
+    </section><!-- Main content -->
+</div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(function(){
+            $('#dataTables-2').DataTable({
+            });
+        });
+    </script>
+{% endblock %}

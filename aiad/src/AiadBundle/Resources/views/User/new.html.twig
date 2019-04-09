@@ -1,0 +1,93 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1> Përdorues i Ri</h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <!-- TABLE: LATEST ORDERS -->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Ploteso të Dhënat e Përdoruesit</h3>
+                            <div class="box-tools pull-right">
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <form role="form" method="post" action="{{ path ('perdoruesNew') }}">
+                                <div class="box-body">
+                                    <div class="form-group col-md-12">
+                                        <label for="emri">Emri </label>
+                                        <input type="text" class="form-control" id="emri" name="name" value="{% if flag==1 %}{{ data['name'] }}{% endif %}" placeholder="Emri i Perdoruesit" >
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="mbiemri">Mbiemri</label>
+                                        <input type="text" class="form-control" id="mbiemri" name="surname" value="{% if flag==1 %}{{ data['surname'] }}{% endif %}" placeholder="Mbiemri i Perdoruesit">
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        {% if flag==1 %}<p style="color: red">Ky perdorues ekziston</p>{% endif %}
+                                        <label for="username">Username </label>
+                                        <input type="text" class="form-control" id="username" name="username" value="{% if flag==1 %}{{ data['username'] }}{% endif %}" placeholder="Username">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="password">Password </label>
+                                        <input type="password" class="form-control" id="password" name="password" value="{% if flag==1 %}{{ data['password'] }}{% endif %}" placeholder="Password">
+                                    </div>
+
+                                        <div class="form-group col-md-12">
+                                            <label for="email">E-mail</label>
+                                            <input type="email" class="form-control" id="email" name="email"  value="{% if flag==1 %}{{ data['email'] }}{% endif %}" placeholder="Email i Perdoruesit">
+                                        </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="address">Adresa</label>
+                                        <input type="text" class="form-control" id="address" name="address" value="{% if flag==1 %}{{ data['adresa'] }}{% endif %}" placeholder="Adresa e perdoruesit">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="role">Roli</label>
+                                        <select class="form-control select2 controls" name = "role" id="role" required="required" >
+                                            <option value="">Zgjidh Rolin</option>
+                                            {% for q in roles %}
+                                                {% if q.role != 'SUPERADMIN' %}
+                                                <option value="{{ q.id }}">{{ q.role }}</option>
+                                                    {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+
+
+                                </div>
+
+
+
+                                <!-- /.box-body -->
+
+                                <div class="box-footer">
+                                    <button type="submit" name="submit" class="btn btn-success">Shto Përdorues</button>
+                                </div>
+                            </form>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div>
+            </div>
+        </section><!-- Main content -->
+    </div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+
+
+
+{% endblock %}

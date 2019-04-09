@@ -1,0 +1,220 @@
+{% if is_granted('ROLE_ADMIN') %}
+<!-- Control Sidebar -->
+<style>
+    .header-right {
+        font-weight: bold;
+        background-color: lightgrey;
+        text-align: center;
+        color: #848484;
+    }
+    .nav-tabs.nav-justified>li {
+        font-size: 12px !important;
+    }
+    .scroll-tab_content{
+        max-height: 100%;
+        height: 100%;
+        overflow-y: scroll;
+        display: inline-block;
+        margin-right: 1%;
+    }
+</style>
+<aside class="control-sidebar control-sidebar-light scroll-tab_content">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+        <li class="active"><a href="#control-konfigurime-parcela" data-toggle="tab"><span data-toggle="tooltip" data-placement="right" title="PARCELA" class="glyphicon glyphicon-tree-deciduous"></span></a></li>
+        <li><a href="#control-vendndodhja" data-toggle="tab"><i  data-toggle="tooltip" data-placement="right" title="VENDNDODHJA" class="fa fa-home"></i></a></li>
+        <li><a href="#control-konfigurime-nderhyrja" data-toggle="tab"><i  data-toggle="tooltip" data-placement="bottom" title="NDËRHYRJA" class="fa fa-scissors"></i></a></li>
+        <li><a href="#control-konfigurime-aplikime" data-toggle="tab"><i  data-toggle="tooltip" data-placement="left" title="APLIKIME" class="fa fa-tint" ></i></a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <!-- Home tab content -->
+        <div class="tab-pane active" id="control-konfigurime-parcela">
+            <section class="sidebar">
+                <ul class="sidebar-menu">
+                    <li class="header-right">KONFIGURIME <br/> Të dhëna agronomike</li>
+                    <li>
+                        <a href="{{ path('settingsorientimi_index') }}"><i class="fa fa-circle-o"></i> Orientimi</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsujitje_index') }}"><i class="fa fa-circle-o"></i> Me ujitje/Pa ujitje</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingssistemiujitjes_index') }}"><i class="fa fa-circle-o"></i> Sistemi i ujitjes</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsorigjinaujit_index') }}"><i class="fa fa-circle-o"></i> Origjina e ujit</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingscilesiaujit_index') }}"><i class="fa fa-circle-o"></i> Cilësia e ujit</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsmbulesabimoretokes_index') }}"><i class="fa fa-circle-o"></i> Mbulesa bimore  <br/>&nbsp;&nbsp; e tokës</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsllojimbulesesbimore_index') }}"><i class="fa fa-circle-o"></i> Lloji i mbulesës <br/>&nbsp;&nbsp;  bimore</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('kultivaret_index') }}"><i class="fa fa-circle-o"></i> Kultivarët </a>
+                    </li>
+                </ul>
+                <ul class="sidebar-menu">
+                    <li class="header-right">KONFIGURIME <br/> Kultivari</li>
+                    <li>
+                        <a href="{{ path('settingsdistanca_index') }}"><i class="fa fa-circle-o"></i> Distanca</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingskembepeme_index') }}"><i class="fa fa-circle-o"></i>Numri i këmbëve  <br/>&nbsp;&nbsp; për pemë</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsformakurores_index') }}"><i class="fa fa-circle-o"></i>Forma e kurorës</a>
+                    </li>
+
+                </ul>
+            </section>
+
+        </div>
+        <div class="tab-pane active" id="control-konfigurime-aplikime">
+            <section class="sidebar">
+                <ul class="sidebar-menu">
+                    <li class="header-right">KONFIGURIME <br/> Aplikime</li>
+                    <li>
+                        <a href="{{ path('settingsarsyeaplikimisemundje_index') }}"><i class="fa fa-circle-o"></i> Arsyeje Sëmundje</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsjustifikimaplikimisemundje_index') }}"><i class="fa fa-circle-o"></i>  Justifikimi Sëmundje</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsdozanjesia_index') }}"><i class="fa fa-circle-o"></i> Doza/ Njësia</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingspleherimitipi_index') }}"><i class="fa fa-circle-o"></i>Tipi i plehërimit</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsmodelipleherimit_index') }}"><i class="fa fa-circle-o"></i> Modeli i plehërimit</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingspleherimijustifikim_index') }}"><i class="fa fa-circle-o"></i> Justifikimi i <br/>plehërimit</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingslendaaktive_index') }}"><i class="fa fa-circle-o"></i>Lënda aktive</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsfirmaprodukteve_index') }}"><i class="fa fa-circle-o"></i> Firma e produkteve </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsproduktikomercial_index') }}"><i class="fa fa-circle-o"></i> Produkti komercial </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('llojiproduktitkomercial_index') }}"><i class="fa fa-circle-o"></i> Lloji i produktit<br/> komercial </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsshperndarjatrajtimit_index') }}"><i class="fa fa-circle-o"></i> Shpërndarja e <br/> trajtimit </a>
+                    </li>
+                </ul>
+            </section>
+
+        </div><!-- /.tab-pane -->
+        <div class="tab-pane" id="control-vendndodhja">
+            <section class="sidebar">
+                <ul class="sidebar-menu">
+                    <li class="header-right">KONFIGURIME <br/> Vendndodhja</li>
+                    <li>
+                        <a href="{{ path('vendndodhjaqarku_index') }}"><i class="fa fa-circle-o"></i>Qarku</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('vendndodhjabashkia_index') }}"><i class="fa fa-circle-o"></i>Bashkia</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('vendndodhjafshati_index') }}"><i class="fa fa-circle-o"></i>Fshati</a>
+                    </li>
+                </ul>
+            </section>
+        </div>
+        <div class="tab-pane" id="control-konfigurime-nderhyrja">
+            <section class="sidebar">
+                <ul class="sidebar-menu">
+                    <li class="header-right">KONFIGURIME <br/> Ndërhyrje</li>
+                    <br>
+                    <li class="header-right">Krasitja</li>
+                    <li>
+                        <a href="{{ path('settingstipikrasitjes_index') }}"><i class="fa fa-circle-o"></i>Tipi i krasitjes</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingskrasitjeproduktidizinfektues_index') }}"><i class="fa fa-circle-o"></i>Produkti dizinfektues</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsmjete_index') }}"><i class="fa fa-circle-o"></i>Mjetet e përdorura</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsllojimbetjeve_index') }}"><i class="fa fa-circle-o"></i>Lloji i mbetjeve</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsmenyraeleminimit_index') }}"><i class="fa fa-circle-o"></i>Mënyra e eliminimit <br/>&nbsp;&nbsp; të mbetjeve</a>
+                    </li>
+                    <li class="header-right">Vjelja</li>
+                    <li>
+                        <a href="{{ path('settingsvjeljadestinacioni_index') }}"><i class="fa fa-circle-o"></i>Vjelja Destinacion</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsmenyravjeljes_index') }}"><i class="fa fa-circle-o"></i>Mënyra e vjeljes</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsllojiullinjve_index') }}"><i class="fa fa-circle-o"></i>Lloji i ullinjve</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsprejardhjafrutit_index') }}"><i class="fa fa-circle-o"></i>Prejardhja e frutit</a>
+                    </li>
+                    <li class="header-right">Ujitja</li>
+                    <li>
+                        <a href="{{ path('settingsorigjinaujit_index') }}"><i class="fa fa-circle-o"></i> Origjina e ujit</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingscilesiaujit_index') }}"><i class="fa fa-circle-o"></i> Cilësia e ujit</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsarsyeujitje_index') }}"><i class="fa fa-circle-o"></i> Arsyeja e ujitjes</a>
+                    </li>
+                    <li class="header-right">Punimi i tokës</li>
+                    <li>
+                        <a href="{{ path('settingstipipunimit_index') }}"><i class="fa fa-circle-o"></i> Tipi i punimit</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsarsyejatipitpunimit_index') }}"><i class="fa fa-circle-o"></i> Arsyeja e tipit <br/> &nbsp;&nbsp; të punimit</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsshperndarjapunimittokes_index') }}"><i class="fa fa-circle-o"></i> Shpërndarja e <br/>&nbsp;&nbsp;  punimit</a>
+                    </li>
+                    <li class="header-right">Mbulesa e tokës</li>
+                    <li>
+                        <a href="{{ path('settingsmtokesspeciamb_index') }}"><i class="fa fa-circle-o"></i> Specia e mbjellë</a>
+                    </li>
+                    <li class="header-right">Gracka masive</li>
+                    <li>
+                        <a href="{{ path('settingsgrackaferromoni_index') }}"><i class="fa fa-circle-o"></i>Ferromoni</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsgrackakompprodhuse_index') }}"><i class="fa fa-circle-o"></i>Kompania Prodhuese</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsgrackakompshperndarese_index') }}"><i class="fa fa-circle-o"></i>Kompania <br/>&nbsp;&nbsp;  Shpërndarëse</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsgrackaobjektivi_index') }}"><i class="fa fa-circle-o"></i>Objektivi</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsgrackatipidifuzorit_index') }}"><i class="fa fa-circle-o"></i>Tipi Difuzorit</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('settingsgrackatipi_index') }}"><i class="fa fa-circle-o"></i>Tipi</a>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </div>
+</aside><!-- /.control-sidebar -->
+<!-- Add the sidebar's background. This div must be placed
+     immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>
+</div><!-- ./wrapper -->
+{% endif %}

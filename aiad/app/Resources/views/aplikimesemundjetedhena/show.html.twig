@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>AplikimeSemundjeTedhena</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ aplikimeSemundjeTedhena.id }}</td>
+            </tr>
+            <tr>
+                <th>Dataaplikimit</th>
+                <td>{% if aplikimeSemundjeTedhena.dataAplikimit %}{{ aplikimeSemundjeTedhena.dataAplikimit|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Produktikomercialdoza</th>
+                <td>{{ aplikimeSemundjeTedhena.produktiKomercialDoza }}</td>
+            </tr>
+            <tr>
+                <th>Materialiaktivlendaaktive</th>
+                <td>{{ aplikimeSemundjeTedhena.materialiAktivLendaAktive }}</td>
+            </tr>
+            <tr>
+                <th>Materialiaktivpastertia</th>
+                <td>{{ aplikimeSemundjeTedhena.materialiAktivPastertia }}</td>
+            </tr>
+            <tr>
+                <th>Emrifirmes</th>
+                <td>{{ aplikimeSemundjeTedhena.emriFirmes }}</td>
+            </tr>
+            <tr>
+                <th>Vezhgime</th>
+                <td>{{ aplikimeSemundjeTedhena.vezhgime }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('aplikimesemundjetedhena_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('aplikimesemundjetedhena_edit', { 'id': aplikimeSemundjeTedhena.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

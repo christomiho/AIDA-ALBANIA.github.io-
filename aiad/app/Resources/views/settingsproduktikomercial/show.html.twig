@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>SettingsProduktiKomercial</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ settingsProduktiKomercial.id }}</td>
+            </tr>
+            <tr>
+                <th>Emri</th>
+                <td>{{ settingsProduktiKomercial.emri }}</td>
+            </tr>
+            <tr>
+                <th>Pastertia</th>
+                <td>{{ settingsProduktiKomercial.pastertia }}</td>
+            </tr>
+            <tr>
+                <th>Perdorimirekomanduar</th>
+                <td>{{ settingsProduktiKomercial.perdorimiRekomanduar }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('settingsproduktikomercial_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('settingsproduktikomercial_edit', { 'id': settingsProduktiKomercial.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

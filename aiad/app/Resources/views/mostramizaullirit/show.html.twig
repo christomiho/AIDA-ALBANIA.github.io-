@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>MostraMizaUllirit</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mostraMizaUllirit.id }}</td>
+            </tr>
+            <tr>
+                <th>Datamizaullirit</th>
+                <td>{% if mostraMizaUllirit.dataMizaUllirit %}{{ mostraMizaUllirit.dataMizaUllirit|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Rationrmizakurthdite</th>
+                <td>{{ mostraMizaUllirit.ratioNrmizaKurthdite }}</td>
+            </tr>
+            <tr>
+                <th>Nrfemravezhguara</th>
+                <td>{{ mostraMizaUllirit.nrFemraVezhguara }}</td>
+            </tr>
+            <tr>
+                <th>Perqindjefemraveze</th>
+                <td>{{ mostraMizaUllirit.perqindjeFemraveze }}</td>
+            </tr>
+            <tr>
+                <th>Indeksirrezikut</th>
+                <td>{{ mostraMizaUllirit.indeksiRrezikut }}</td>
+            </tr>
+            <tr>
+                <th>Rationrmizapllakedite</th>
+                <td>{{ mostraMizaUllirit.ratioNrmizaPllakedite }}</td>
+            </tr>
+            <tr>
+                <th>Perqindjefrutapickuara</th>
+                <td>{{ mostraMizaUllirit.perqindjeFrutaPickuara }}</td>
+            </tr>
+            <tr>
+                <th>Perqindjefrutamizegjalle</th>
+                <td>{{ mostraMizaUllirit.perqindjeFrutaMizegjalle }}</td>
+            </tr>
+            <tr>
+                <th>Frutavrimedaljemize</th>
+                <td>{{ mostraMizaUllirit.frutaVrimedaljemize }}</td>
+            </tr>
+            <tr>
+                <th>Perqindjemizaparazite</th>
+                <td>{{ mostraMizaUllirit.perqindjeMizaparazite }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mostramizaullirit_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('mostramizaullirit_edit', { 'id': mostraMizaUllirit.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

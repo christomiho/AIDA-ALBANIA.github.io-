@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>SettingsPrejardhjaFrutit</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ settingsPrejardhjaFrutit.id }}</td>
+            </tr>
+            <tr>
+                <th>Prejardhjafrutit</th>
+                <td>{{ settingsPrejardhjaFrutit.prejardhjaFrutit }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('settingsprejardhjafrutit_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('settingsprejardhjafrutit_edit', { 'id': settingsPrejardhjaFrutit.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>MostraVerticilium</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mostraVerticilium.id }}</td>
+            </tr>
+            <tr>
+                <th>Dataverticilium</th>
+                <td>{% if mostraVerticilium.dataVerticilium %}{{ mostraVerticilium.dataVerticilium|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Pemesimptomareja</th>
+                <td>{{ mostraVerticilium.pemeSimptomaReja }}</td>
+            </tr>
+            <tr>
+                <th>Perqindjepemevesimptoma</th>
+                <td>{{ mostraVerticilium.perqindjePemeveSimptoma }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mostraverticilium_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('mostraverticilium_edit', { 'id': mostraVerticilium.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

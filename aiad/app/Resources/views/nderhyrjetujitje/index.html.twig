@@ -1,0 +1,79 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Ndërhyrjet</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Ujitje</h3>
+                        <div class="box-tools pull-right">
+                            {#<a class="btn btn-info pull-left" href="{{ path('nderhyrjetujitje_new') }}">Shto të re</a>#}
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table table-responsive" id="dataTables-2">
+                            <thead>
+                                <tr>
+                                    <th class='nr_column_first'>#</th>
+                                    <th>Data e ujitjes</th>
+                                    <th>Origjina e ujit</th>
+                                    <th>Sistemi i ujitjes</th>
+                                    <th>Cilësia e ujit</th>
+                                    <th>Sasia e ujit (m<sup>3</sup>/ha)</th>
+                                    <th>Arsyeja e ujitjes</th>
+                                    <th>Vëzhgime</th>
+                                    <th>Modifiko</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% set i=1 %}
+                            {% for nderhyrjetUjitje in nderhyrjetUjitjes %}
+                                <tr>
+                                    <td>{{ i }}</td>
+                                    <td>{% if nderhyrjetUjitje.dataUjitjes %}{{ nderhyrjetUjitje.dataUjitjes|date('d-m-Y') }}{% endif %}</td>
+                                    <td>{{ nderhyrjetUjitje.origjinaUjit }}</td>
+                                    <td>{{ nderhyrjetUjitje.sistemiUjitjes }}</td>
+                                    <td>{{ nderhyrjetUjitje.cilesiaUjit }}</td>
+                                    <td>{{ nderhyrjetUjitje.sasiaUjit }}</td>
+                                    <td>{{ nderhyrjetUjitje.arsyejaUjitjes }}</td>
+                                    <td>{{ nderhyrjetUjitje.vezhgime }}</td>
+                                    <td style="text-align: center">
+                                        <a href="{{ path('nderhyrjetujitje_edit', { 'id': nderhyrjetUjitje.id }) }}">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% set i=i+1 %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div><!-- /.table-responsive -->
+
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div>
+    </section><!-- Main content -->
+</div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(function(){
+            $('#dataTables-2').DataTable({
+            });
+        });
+    </script>
+{% endblock %}

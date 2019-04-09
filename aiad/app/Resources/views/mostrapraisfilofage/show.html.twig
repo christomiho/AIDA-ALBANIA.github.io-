@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>MostraPraisFilofage</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mostraPraisFilofage.id }}</td>
+            </tr>
+            <tr>
+                <th>Datapraisfilofage</th>
+                <td>{% if mostraPraisFilofage.dataPraisFilofage %}{{ mostraPraisFilofage.dataPraisFilofage|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Perqindjelastarprekur</th>
+                <td>{{ mostraPraisFilofage.perqindjeLastarprekur }}</td>
+            </tr>
+            <tr>
+                <th>Ratiolastarprekurformagjalla</th>
+                <td>{{ mostraPraisFilofage.ratioLastarprekurFormagjalla }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mostrapraisfilofage_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('mostrapraisfilofage_edit', { 'id': mostraPraisFilofage.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

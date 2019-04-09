@@ -1,0 +1,72 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>Mostra</h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <!-- TABLE: LATEST ORDERS -->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Prais Filofage</h3>
+                            <div class="box-tools pull-right">
+                                {#<a class="btn btn-info pull-left" href="{{ path('mostrapraisfilofage_new') }}">Shto të re</a>#}
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <table class="table table-responsive" id="dataTables-2">
+                                <thead>
+
+            <tr >
+                <th class='nr_column_first'>#</th>
+                <th>Data e vëzhgimit</th>
+                <th>(%)e lastarëve të prekur</th>
+                <th>(%)e lastarëve të prekur / forma të gjalla</th>
+                <th>Modifiko</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% set i=1 %}
+        {% for mostraPraisFilofage in mostraPraisFilofages %}
+            <tr>
+                <td>{{ i }}</td>
+                <td>{% if mostraPraisFilofage.dataPraisFilofage %}{{ mostraPraisFilofage.dataPraisFilofage|date('d-m-Y') }}{% endif %}</td>
+                <td>{{ mostraPraisFilofage.perqindjeLastarprekur }}</td>
+                <td>{{ mostraPraisFilofage.ratioLastarprekurFormagjalla }}</td>
+                <td>
+                    <a href="{{ path('mostrapraisfilofage_edit', { 'id': mostraPraisFilofage.id }) }}">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        {% set i=i+1 %}
+        </tbody>
+    </table>
+    </div><!-- /.table-responsive -->
+
+    </div><!-- /.box-body -->
+    </div><!-- /.box -->
+    </div>
+    </section><!-- Main content -->
+    </div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(function(){
+            $('#dataTables-2').DataTable({
+            });
+        });
+    </script>
+{% endblock %}

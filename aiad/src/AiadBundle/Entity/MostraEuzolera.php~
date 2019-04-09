@@ -1,0 +1,56 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * MostraEuzolera
+ *
+ * @ORM\Table(name="mostra_euzolera", indexes={@ORM\Index(name="fk_parcela_euzolera_idx", columns={"parcela"})})
+ * @ORM\Entity
+ */
+class MostraEuzolera
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_euzolera", type="date", nullable=true)
+     */
+    private $dataEuzolera;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_jashtqitje_peme", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioJashtqitjePeme;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_territur_gracke", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioTerriturGracke;
+
+    /**
+     * @var \ParcelaIdentifikimi
+     *
+     * @ORM\ManyToOne(targetEntity="ParcelaIdentifikimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parcela", referencedColumnName="id")
+     * })
+     */
+    private $parcela;
+
+
+}

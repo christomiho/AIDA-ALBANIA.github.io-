@@ -1,0 +1,32 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * SettingsShperndarjaPunimitTokes
+ *
+ * @ORM\Table(name="settings_shperndarja_punimit_tokes")
+ * @ORM\Entity
+ */
+class SettingsShperndarjaPunimitTokes
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="shperndarja", type="string", length=150, nullable=true)
+     */
+    private $shperndarja;
+
+
+}

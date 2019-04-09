@@ -1,0 +1,126 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ParcelaAgronomike
+ *
+ * @ORM\Table(name="parcela_agronomike", indexes={@ORM\Index(name="fk_parcela_agronomi_idx", columns={"parcela"}), @ORM\Index(name="fk_orientimi_agronomi_idx", columns={"orientimi"}), @ORM\Index(name="fk_ujitje_agronomi_idx", columns={"ujitje"}), @ORM\Index(name="fk_sistem_ujitje_agronomi_idx", columns={"sistemi_ujitje"}), @ORM\Index(name="fk_origjona_ujit_agronomi_idx", columns={"origjina_ujit"}), @ORM\Index(name="fk_cilesia_ujit_agronomi_idx", columns={"cilesia_ujit"}), @ORM\Index(name="fk_mbulesa_bimore_agronomi_idx", columns={"mbulesa_bimore_tokes"}), @ORM\Index(name="fk_lloji_mbuleses_agronomi_idx", columns={"lloji_mbuleses"})})
+ * @ORM\Entity
+ */
+class ParcelaAgronomike
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="pjerresia", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $pjerresia;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="siperfaqja", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $siperfaqja;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="vezhgime_tjera", type="text", nullable=true)
+     */
+    private $vezhgimeTjera;
+
+    /**
+     * @var \ParcelaIdentifikimi
+     *
+     * @ORM\ManyToOne(targetEntity="ParcelaIdentifikimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parcela", referencedColumnName="id")
+     * })
+     */
+    private $parcela;
+
+    /**
+     * @var \SettingsOrientimi
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsOrientimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="orientimi", referencedColumnName="id")
+     * })
+     */
+    private $orientimi;
+
+    /**
+     * @var \SettingsUjitje
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsUjitje")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ujitje", referencedColumnName="id")
+     * })
+     */
+    private $ujitje;
+
+    /**
+     * @var \SettingsSistemiUjitjes
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsSistemiUjitjes")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="sistemi_ujitje", referencedColumnName="id")
+     * })
+     */
+    private $sistemiUjitje;
+
+    /**
+     * @var \SettingsOrigjinaUjit
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsOrigjinaUjit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="origjina_ujit", referencedColumnName="id")
+     * })
+     */
+    private $origjinaUjit;
+
+    /**
+     * @var \SettingsCilesiaUjit
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsCilesiaUjit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cilesia_ujit", referencedColumnName="id")
+     * })
+     */
+    private $cilesiaUjit;
+
+    /**
+     * @var \SettingsMbulesaBimoreTokes
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsMbulesaBimoreTokes")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="mbulesa_bimore_tokes", referencedColumnName="id")
+     * })
+     */
+    private $mbulesaBimoreTokes;
+
+    /**
+     * @var \SettingsLlojiMbulesesBimore
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsLlojiMbulesesBimore")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="lloji_mbuleses", referencedColumnName="id")
+     * })
+     */
+    private $llojiMbuleses;
+
+
+}

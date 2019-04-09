@@ -1,0 +1,92 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>Aplikime Plehërimi</h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <!-- TABLE: LATEST ORDERS -->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Aplikime Plehërimi</h3>
+                            <div class="box-tools pull-right">
+                                <a class="btn btn-info pull-left" href="{{ path('aplikimi_pleherimi_form') }}">Shto të re</a>
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <table  class="table table-responsive" id="dataTables-2">
+                                <thead>
+                                <tr>
+                                    <th class="nr_column_first">#</th>
+                                    <th>Data e plehërimit</th>
+                                    <th>Tipi</th>
+                                    <th>Modeli</th>
+                                    <th>Sipërfaqja e aplikimit (ha)</th>
+                                    <th>Produkti komercial / Përbërësi</th>
+                                    <th>Doza</th>
+                                    <th>(%) Pasurimi N-P-K</th>
+                                    <th>(%) Pasurimi Ca / Mg / S</th>
+                                    <th>(%) Pasurimi elementë të tjerë</th>
+                                    <th>Firma shpërndarëse</th>
+                                    <th>Justifikimi i plehërimit</th>
+                                    <th>Densiteti (kg) (Plehërim me ujitje)</th>
+                                    <th>Plehërimi i aplikuar(kg) (Plehërim me ujitje)</th>
+                                    <th>Modifiko</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% set i=1 %}
+                                {% for ap in aplikime_pleherimi %}
+                                    <tr>
+                                        <td>{{ i }}</td>
+                                        <td>{% if ap.dataAplikimit %}{{ ap.dataAplikimit|date('d-m-Y') }}{% endif %}</td>
+                                        <td>{{ ap.tipiAplikimit.tipiPleherimit }}</td>
+                                        <td>{{ ap.modeliAplikimit.modeliPleherimit }}</td>
+                                        <td>{{ ap.siperfaqjaAplikimit }}</td>
+                                        <td>{{ ap.produktiKomercialPleherimit.emri }} / {{ ap.produktiKomercialPleherimit.lendaAktive }}</td>
+                                        <td>{{ ap.dozaAplikimit }} {{ ap.njesiaAplikimit }}</td>
+                                        <td>{{ ap.nitrat }} - {{ ap.fosfor }} - {{ ap.potasium }}</td>
+                                        <td>Ca = {{ ap.calcium }} / Mg = {{ ap.magnez }} / S = {{ ap.squfur }} </td>
+                                        <td>Fe = {{ ap.hekur }} / Zn = {{ ap.zink }} / Cu = {{ ap.baker }} / Mn = {{ ap.mangan }} / Mo = {{ ap.molibdenum }} / B = {{ ap.bor }} / Cl = {{ ap.klor }}</td>
+                                        <td>{{ ap.produktiKomercialPleherimit.firma }}</td>
+                                        <td>{{ ap.justifikimiAplikimit }}</td>
+                                        <td>{{ ap.densitetiPleherimit }}</td>
+                                        <td>{{ ap.aplikimePleherimiAplikuar }}</td>
+                                        <td>
+                                            <a href="{{ path('aplikimi_pleherimi_edit', {'id': ap.id}) }}">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    {% set i=i+1 %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div><!-- /.table-responsive -->
+
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div>
+        </section><!-- Main content -->
+    </div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(function(){
+            $('#dataTables-2').DataTable({
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,63 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * MostraGlifodes
+ *
+ * @ORM\Table(name="mostra_glifodes", indexes={@ORM\Index(name="fk_parcela_glifodes_idx", columns={"parcela"})})
+ * @ORM\Entity
+ */
+class MostraGlifodes
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_glifodes", type="date", nullable=true)
+     */
+    private $dataGlifodes;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_territur_grackadite", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioTerriturGrackadite;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="perqindje_degezaprekur", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $perqindjeDegezaprekur;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="perqindje_lastarprekur", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $perqindjeLastarprekur;
+
+    /**
+     * @var \ParcelaIdentifikimi
+     *
+     * @ORM\ManyToOne(targetEntity="ParcelaIdentifikimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parcela", referencedColumnName="id")
+     * })
+     */
+    private $parcela;
+
+
+}

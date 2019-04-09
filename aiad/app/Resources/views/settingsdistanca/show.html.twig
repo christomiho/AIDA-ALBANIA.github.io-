@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>SettingsDistanca</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ settingsDistanca.id }}</td>
+            </tr>
+            <tr>
+                <th>Distanca</th>
+                <td>{{ settingsDistanca.distanca }}</td>
+            </tr>
+            <tr>
+                <th>Distancashumezimi</th>
+                <td>{{ settingsDistanca.distancaShumezimi }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('settingsdistanca_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('settingsdistanca_edit', { 'id': settingsDistanca.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

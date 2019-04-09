@@ -1,0 +1,77 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Mostra</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Kërpudha të tjera</h3>
+                        <div class="box-tools pull-right">
+                            {#<a class="btn btn-info pull-left" href="{{ path('mostrasyripalloit_new') }}">Shto të Re</a>#}
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table table-responsive" id="dataTables-2">
+                            <thead>
+                                <tr>
+                                    <th class='nr_column_first'>#</th>
+                                    <th>Data e vëzhgimit</th>
+                                    <th>Fruta të sapunifikuara: (%) e frutave me simptoma</th>
+                                    <th>Eskudete: (%) e frutave me simptoma</th>
+                                    <th>Lepra: (%) e frutave me simptoma</th>
+                                    <th>Fruta të kalbura: (%) e frutave me simptoma</th>
+                                    <th>Turbekuloza: Simptoma (0-3)</th>
+                                    <th>Asfiksia e rrënjeve: Nr i pemëve të infektuara</th>
+                                    <th>Modifiko</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% set i=1 %}
+                            {% for mostraSemundjeTjera in mostraSemundjeTjeras %}
+                                <tr>
+                                    <td>{{ i }}</td>
+                                    <td>{% if mostraSemundjeTjera.dataSemundjeTjera %}{{ mostraSemundjeTjera.dataSemundjeTjera|date('d-m-Y') }}{% endif %}</td>
+                                    <td>{{ mostraSemundjeTjera.perqindjeFrutasapunifikuaraFrutasimptoma }}</td>
+                                    <td>{{ mostraSemundjeTjera.perqindjeEskudeteFrutasimptoma }}</td>
+                                    <td>{{ mostraSemundjeTjera.perqindjeLepraFrutasimptoma }}</td>
+                                    <td>{{ mostraSemundjeTjera.perqindjeFrutakalburaFrutasimptoma }}</td>
+                                    <td>{{ mostraSemundjeTjera.turbekulozaSimptoma }}</td>
+                                    <td>{{ mostraSemundjeTjera.asfiksiaRrenjevePemeinfektuara }}</td>
+                                    <td>
+                                        <a href="{{ path('mostrasemundjetjera_edit', { 'id': mostraSemundjeTjera.id }) }}"><span class="glyphicon glyphicon-edit"></span></a>
+
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div><!-- /.table-responsive -->
+
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div>
+    </section><!-- Main content -->
+</div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(function(){
+            $('#dataTables-2').DataTable({
+            });
+        });
+    </script>
+{% endblock %}

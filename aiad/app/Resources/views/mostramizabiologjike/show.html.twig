@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>MostraMizaBiologjike</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mostraMizaBiologjike.id }}</td>
+            </tr>
+            <tr>
+                <th>Datamizabiologjike</th>
+                <td>{% if mostraMizaBiologjike.dataMizaBiologjike %}{{ mostraMizaBiologjike.dataMizaBiologjike|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Frutavezhguara</th>
+                <td>{{ mostraMizaBiologjike.frutaVezhguara }}</td>
+            </tr>
+            <tr>
+                <th>Frutapickuara</th>
+                <td>{{ mostraMizaBiologjike.frutaPickuara }}</td>
+            </tr>
+            <tr>
+                <th>Ratiopickimepaveze</th>
+                <td>{{ mostraMizaBiologjike.ratioPickimepaveze }}</td>
+            </tr>
+            <tr>
+                <th>Ratiovezetegjalla</th>
+                <td>{{ mostraMizaBiologjike.ratioVezetegjalla }}</td>
+            </tr>
+            <tr>
+                <th>Ratiovezetevdekura</th>
+                <td>{{ mostraMizaBiologjike.ratioVezetevdekura }}</td>
+            </tr>
+            <tr>
+                <th>Ratiolarvategjalla</th>
+                <td>{{ mostraMizaBiologjike.ratioLarvategjalla }}</td>
+            </tr>
+            <tr>
+                <th>Ratiolarvatengordhura</th>
+                <td>{{ mostraMizaBiologjike.ratioLarvatengordhura }}</td>
+            </tr>
+            <tr>
+                <th>Rationimfategjalla</th>
+                <td>{{ mostraMizaBiologjike.ratioNimfategjalla }}</td>
+            </tr>
+            <tr>
+                <th>Rationimfatengordhura</th>
+                <td>{{ mostraMizaBiologjike.ratioNimfatengordhura }}</td>
+            </tr>
+            <tr>
+                <th>Ratiogaleribosh</th>
+                <td>{{ mostraMizaBiologjike.ratioGaleribosh }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mostramizabiologjike_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('mostramizabiologjike_edit', { 'id': mostraMizaBiologjike.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

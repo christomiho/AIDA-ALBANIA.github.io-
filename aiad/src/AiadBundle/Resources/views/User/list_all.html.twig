@@ -1,0 +1,80 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Përdoruesit e Sistemit</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Përdoruesit e Sistemit</h3>
+                        <div class="box-tools pull-right">
+                            {#<a class="btn btn-info pull-left" href="{{ path('perdoruesNew') }}">Shto të ri</a>#}
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table table-responsive" id="dataTables-2">
+                            <thead>
+                            <tr>
+                                <th class="nr_column_first">#</th>
+                                <th>Emri</th>
+                                <th>Mbiemri</th>
+                                <th>Username</th>
+                                <th>Adresa</th>
+                                <th>Email</th>
+                                <th>Data Regjistrimit</th>
+                                <th>Roli</th>
+                                <th>Modifiko</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% set i=1 %}
+                            {% for user in users %}
+                            <tr>
+                                <td>{{ i }}</td>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.surname }}</td>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.adresaBanimit|length >40 ? user.adresaBanimit|slice(0,40) ~ '...' : user.adresaBanimit }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{% if user.dataRegjistrimit %}{{ user.dataRegjistrimit|date('d-m-Y') }}{% endif %}</td>
+                                <td>{{ user.role }}</td>
+                                <td style="text-align: center">
+                                    <a href="{{ path('user_edit', { 'id': user.id }) }}">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </a>
+                                </td>
+
+                            </tr>
+                                {% set i =i+1 %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div><!-- /.table-responsive -->
+
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div>
+    </section><!-- Main content -->
+</div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(function(){
+            $('#dataTables-2').DataTable({
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,758 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+    <div class="content-wrapper bounceInUp animated">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1> Aplikime sëmundje</h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="row ">
+                <div class="col-md-12">
+
+                    <!-- TABLE: LATEST ORDERS -->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Aplikim i ri</h3>
+                            <div class="box-tools pull-right">
+                                {#<a class="btn btn-info pull-left" href="{{ path('new_parcel') }}">Shto të re</a>#}
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+
+
+
+                        <div class="col-md-12">
+                        <a class="btn btn-success pull-right" href="{{ path('tabelapermbledheseaplikimsemundjesh_edit', { 'id': app.session.get('aplikim_number') }) }}">Përmbyll aplikimin</a>
+                        <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab_herbicide" data-toggle="tab">Herbicide</a></li>
+                            <li><a href="#tab_insekticide" data-toggle="tab">Insekticide</a></li>
+                            <li><a href="#tab_fungicide" data-toggle="tab">Fungicide</a></li>
+                            <li><a href="#tab_tjera" data-toggle="tab">Të tjera</a></li>
+                        </ul>
+                        <div class="tab-content">
+
+
+                        <div class="active tab-pane" id="tab_herbicide">
+
+                            <form id="herbicide_form" class="form-horizontal">
+
+                                <input type="text" name="aplikimi_number_herbicid" id="aplikimi_number_herbicid" value=" {{ app.session.get('aplikim_number') }}" style="display: none">
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-4">
+                                        <label for="data_aplikim_herbicide" class="col-md-4 control-label">Data e aplikimit</label>
+                                        <div class="col-md-8">
+                                            {#<input type="text" class="form-control input-inline datepicker" data-provide="datepicker" data-date-format="yyyy-mm-dd" id="data_aplikim_herbicid" name="data_aplikim_herbicid">#}
+                                            <input class="form-control" type="date" date-format="yyyy-mm-dd" id="data_aplikim_herbicid" name="data_aplikim_herbicid">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputName" class="col-md-4 control-label">Emri i produktit</label>
+                                        <div class="col-md-8">
+                                            <select class="form-control select2 controls" name = "produkti_herbicid" id="produkti_herbicid" >
+                                                <option value=""></option>
+                                                {% for produkt in produkte_herbicid %}
+                                                    <option value="{{ produkt.getId() }}" lenda_aktive_herbicid="{{ produkt.getLendaAktive() }}" pastertia_herbicid="{{ produkt.getPastertia() }}" firma_herbicid="{{ produkt.getFirma() }}">{{ produkt.getEmri() }} </option>
+                                                {% endfor %}
+                                            </select>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="inputEmail" class="col-md-4 control-label">Doza e aplikuar</label>
+                                        <div class="col-md-8">
+                                            <input type="number" class="form-control" id="doza_herbicid" name="doza_herbicid" >
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="inputName" class="col-md-4 control-label">Njësia e aplikimit</label>
+                                        <div class="col-md-8">
+                                            <select class="form-control select2 controls" name = "njesia_herbicid" id="njesia_herbicid">
+                                                <option value=""></option>
+                                                {% for njesi in doza_njesia %}
+                                                <option value="{{ njesi.id }}">{{ njesi.getNjesia() }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputName" class="col-md-4 control-label">Lënda aktive</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="lenda_aktive_herbicid" name="lenda_aktive_herbicid" placeholder="Lënda aktive" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="inputEmail" class="col-md-4 control-label">Pastërtia</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="pastertia_herbicid" name="pastertia_herbicid" placeholder="Pastërtia" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="inputName" class="col-md-4 control-label">Firma</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control"  name = "firma_herbicid" id="firma_herbicid"  placeholder="Firma prodhuese" readonly>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="arsyeja_paresore_herbicid" class="col-md-2 control-label">Arsyeja parësore e aplikimit</label>
+                                        <div class="col-md-10">
+                                            <select class="form-control select2 controls" name = "arsyeja_paresore_herbicid" id="arsyeja_paresore_herbicid" >
+                                                <option value=""></option>
+                                                {% for arsye in arsye_aplikimi %}
+                                                    <option value="{{ arsye.id }}">{{ arsye.getArsyeAplikimi() }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="arsyeja_dytesore_herbicid" class="col-md-2 control-label">Arsyeja dytësore e aplikimit</label>
+                                        <div class="col-md-10">
+                                            <select class="form-control select2 controls" name = "arsyeja_dytesore_herbicid" id="arsyeja_dytesore_herbicid" >
+                                                <option value=""></option>
+                                                {% for arsye in arsye_aplikimi %}
+                                                    <option value="{{ arsye.id }}">{{ arsye.getArsyeAplikimi() }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="justifikim_herbicid" class="col-md-2 control-label">Justifikimi i aplikimit</label>
+                                        <div class="col-md-10">
+                                            <select class="form-control select2 controls" name = "justifikim_herbicid" id="justifikim_herbicid" >
+                                                <option value=""></option>
+                                                {% for justifikim in justifikim_aplikimi %}
+                                                    <option value="{{ justifikim.id }}">{{ justifikim.getJustifikimAplikimi() }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="vezhgime_herbicid" class="col-md-2 control-label">Vëzhgime</label>
+                                        <div class="col-md-10">
+                                            <textarea class="form-control" id="vezhgime_herbicid" name="vezhgime_herbicid"> </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <input type="button" onclick="submitHerbicide()" class="btn btn-danger" value="Ruaj dhe vazhdo">
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div><!-- /.tab-pane -->
+
+                        <div class="tab-pane" id="tab_insekticide">
+                            <form id="insekticide" class="form-horizontal">
+
+                                <input type="text" name="aplikimi_number_insekticid" id="aplikimi_number_insekticid" value=" {{ app.session.get('aplikim_number') }}" style="display: none">
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-4">
+                                        <label for="data_aplikim_herbicide" class="col-md-4 control-label">Data e aplikimit</label>
+                                        <div class="col-md-8">
+                                            {#<input type="text" class="form-control form-control input-inline datepicker" data-provide="datepicker" data-date-format="yyyy-mm-dd" id="data_aplikim_insekticid" name="data_aplikim_insekticid" placeholder="Datepicker">#}
+                                       <input  class="form-control" type="date" date-format="yyyy-mm-dd" id="data_aplikim_insekticid" name="data_aplikim_insekticid">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputName" class="col-md-4 control-label">Emri i produktit</label>
+                                        <div class="col-md-8">
+                                            <select class="form-control select2 controls" name = "produkti_insekticid" id="produkti_insekticid" required="required">
+                                                <option value=""></option>
+                                                {% for produkt in produkte_insekticid %}
+                                                    <option value="{{ produkt.getId() }}" lenda_aktive_insekticid="{{ produkt.getLendaAktive() }}" pastertia_insekticid="{{ produkt.getPastertia() }}" firma_insekticid="{{ produkt.getFirma() }}">{{ produkt.getEmri() }} </option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="inputEmail" class="col-md-4 control-label">Doza e aplikuar</label>
+                                        <div class="col-md-8">
+                                            <input type="number" class="form-control" id="doza_insekticid" name="doza_insekticid" >
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="inputName" class="col-md-4 control-label">Njësia e aplikimit</label>
+                                        <div class="col-md-8">
+                                            <select class="form-control select2 controls" name = "njesia_insekticid" id="njesia_insekticid" required="required">
+                                                <option value=""></option>
+                                                {% for njesi in doza_njesia %}
+                                                    <option value="{{ njesi.id }}">{{ njesi.getNjesia() }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputName" class="col-md-4 control-label">Lënda aktive</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="lenda_aktive_insekticid" name="lenda_aktive_insekticid" placeholder="Lënda aktive" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="inputEmail" class="col-md-4 control-label">Pastërtia</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="pastertia_insekticid" name="pastertia_insekticid" placeholder="Pastërtia" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="inputName" class="col-md-4 control-label">Firma</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control"  name = "firma_insekticid" id="firma_insekticid"  placeholder="Firma prodhuese" readonly>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="arsyeja_paresore_herbicid" class="col-md-2 control-label">Arsyeja parësore e aplikimit</label>
+                                        <div class="col-md-10">
+                                            <select class="form-control select2 controls" name = "arsyeja_paresore_insekticid" id="arsyeja_paresore_insekticid" required="required">
+                                                <option value=""></option>
+                                                {% for arsye in arsye_aplikimi %}
+                                                    <option value="{{ arsye.id }}">{{ arsye.getArsyeAplikimi() }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="arsyeja_dytesore_herbicid" class="col-md-2 control-label">Arsyeja dytësore e aplikimit</label>
+                                        <div class="col-md-10">
+                                            <select class="form-control select2 controls" name = "arsyeja_dytesore_insekticid" id="arsyeja_dytesore_insekticid" required="required">
+                                                <option value=""></option>
+                                                {% for arsye in arsye_aplikimi %}
+                                                    <option value="{{ arsye.id }}">{{ arsye.getArsyeAplikimi() }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="justifikim_insekticid" class="col-md-2 control-label">Justifikimi i aplikimit</label>
+                                        <div class="col-md-10">
+                                            <select class="form-control select2 controls" name = "justifikim_insekticid" id="justifikim_insekticid" required="required">
+                                                <option value=""></option>
+                                                {% for justifikim in justifikim_aplikimi %}
+                                                    <option value="{{ justifikim.id }}">{{ justifikim.getJustifikimAplikimi() }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="vezhgime_insekticid" class="col-md-2 control-label">Vëzhgime</label>
+                                        <div class="col-md-10">
+                                            <textarea class="form-control" id="vezhgime_insekticid" name="vezhgime_insekticid"> </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <input type="button" onclick="submitInsekticide()" class="btn btn-danger" value="Ruaj dhe vazhdo">
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div><!-- /.tab-pane -->
+
+                        <div class="tab-pane" id="tab_fungicide">
+
+                            <form id="fungicide" class="form-horizontal">
+                                <input style="display: none" type="text" name="aplikimi_number_fungicid" id="aplikimi_number_fungicid" value=" {{ app.session.get('aplikim_number') }}">
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-4">
+                                        <label for="data_aplikim_fungicid" class="col-md-4 control-label">Data e aplikimit</label>
+                                        <div class="col-md-8">
+                                            {#<input type="text" class="form-control form-control input-inline datepicker" data-provide="datepicker" data-date-format="yyyy-mm-dd" id="data_aplikim_fungicid" name="data_aplikim_fungicid" placeholder="Datepicker">#}
+                                            <input class="form-control" type="date" date-format="yyyy-mm-dd" id="data_aplikim_fungicid" name="data_aplikim_fungicid">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-4">
+                                        <label for="produkti_fungicid" class="col-md-4 control-label">Emri i produktit</label>
+                                        <div class="col-md-8">
+                                            <select class="form-control select2 controls" name = "produkti_fungicid" id="produkti_fungicid" required="required">
+                                                <option value=""></option>
+                                                {% for produkt in produkte_fungicid %}
+                                                    <option value="{{ produkt.getId() }}" lenda_aktive_fungicid="{{ produkt.getLendaAktive() }}" pastertia_fungicid="{{ produkt.getPastertia() }}" firma_fungicid="{{ produkt.getFirma() }}">{{ produkt.getEmri() }} </option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="doza_fungicid" class="col-md-4 control-label">Doza e aplikuar</label>
+                                        <div class="col-md-8">
+                                            <input type="number" class="form-control" id="doza_fungicid" name="doza_fungicid" >
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="njesia_fungicid" class="col-md-4 control-label">Njësia e aplikimit</label>
+                                        <div class="col-md-8">
+                                            <select class="form-control select2 controls" name = "njesia_fungicid" id="njesia_fungicid" required="required">
+                                                <option value=""></option>
+                                                {% for njesi in doza_njesia %}
+                                                    <option value="{{ njesi.id }}">{{ njesi.getNjesia() }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-4">
+                                        <label for="lenda_aktive_fungicid" class="col-md-4 control-label">Lënda aktive</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="lenda_aktive_fungicid" name="lenda_aktive_fungicid" placeholder="Lënda aktive" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="pastertia_fungicid" class="col-md-4 control-label">Pastërtia</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="pastertia_fungicid" name="pastertia_fungicid" placeholder="Pastërtia" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="firma_fungicid" class="col-md-4 control-label">Firma</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control"  name = "firma_fungicid" id="firma_fungicid"  placeholder="Firma prodhuese" readonly>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="arsyeja_paresore_fungicid" class="col-md-2 control-label">Arsyeja parësore e aplikimit</label>
+                                        <div class="col-md-10">
+                                            <select class="form-control select2 controls" name = "arsyeja_paresore_fungicid" id="arsyeja_paresore_fungicid" required="required">
+                                                <option value=""></option>
+                                                {% for arsye in arsye_aplikimi %}
+                                                    <option value="{{ arsye.id }}">{{ arsye.getArsyeAplikimi() }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="arsyeja_dytesore_fungicid" class="col-md-2 control-label">Arsyeja dytësore e aplikimit</label>
+                                        <div class="col-md-10">
+                                            <select class="form-control select2 controls" name = "arsyeja_dytesore_fungicid" id="arsyeja_dytesore_fungicid" required="required">
+                                                <option value=""></option>
+                                                {% for arsye in arsye_aplikimi %}
+                                                    <option value="{{ arsye.id }}">{{ arsye.getArsyeAplikimi() }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="justifikim_fungicid" class="col-md-2 control-label">Justifikimi i aplikimit</label>
+                                        <div class="col-md-10">
+                                            <select class="form-control select2 controls" name = "justifikim_fungicid" id="justifikim_fungicid" required="required">
+                                                <option value=""></option>
+                                                {% for justifikim in justifikim_aplikimi %}
+                                                    <option value="{{ justifikim.id }}">{{ justifikim.getJustifikimAplikimi() }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="vezhgime_fungicid" class="col-md-2 control-label">Vëzhgime</label>
+                                        <div class="col-md-10">
+                                            <textarea class="form-control" id="vezhgime_fungicid" name="vezhgime_fungicid"> </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <input type="button" onclick="submitFungicide()" class="btn btn-danger" value="Ruaj dhe vazhdo">
+                                    </div>
+                                </div>
+                            </form>
+                        </div><!-- /.tab-pane -->
+
+
+                        <div class="tab-pane" id="tab_tjera">
+
+                                <form id="others" class="form-horizontal">
+                                    <input  style="display: none" type="text" name="aplikimi_number_other" id="aplikimi_number_other" value=" {{ app.session.get('aplikim_number') }}">
+                                    <div class="col-md-12">
+                                        <div class="form-group col-md-4">
+                                            <label for="data_aplikim_other" class="col-md-4 control-label">Data e aplikimit</label>
+                                            <div class="col-md-8">
+                                                {#<input type="text" class="form-control form-control input-inline datepicker" data-provide="datepicker" data-date-format="yyyy-mm-dd" id="data_aplikim_other" name="data_aplikim_other" placeholder="Datepicker">#}
+                                                <input class="form-control" type="date" date-format="yyyy-mm-dd" id="data_aplikim_other" name="data_aplikim_other">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group col-md-4">
+                                            <label for="produkti_other" class="col-md-4 control-label">Emri i produktit</label>
+                                            <div class="col-md-8">
+                                                <select class="form-control select2 controls" name = "produkti_other" id="produkti_other" required="required">
+                                                    <option value=""></option>
+                                                    {% for produkt in produkte_other %}
+                                                        <option value="{{ produkt.getId() }}" lenda_aktive_other="{{ produkt.getLendaAktive() }}" pastertia_other="{{ produkt.getPastertia() }}" firma_other="{{ produkt.getFirma() }}">{{ produkt.getEmri() }} </option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="doza_other" class="col-md-4 control-label">Doza e aplikuar</label>
+                                            <div class="col-md-8">
+                                                <input type="number" class="form-control" id="doza_other" name="doza_other" >
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="njesia_other" class="col-md-4 control-label">Njësia e aplikimit</label>
+                                            <div class="col-md-8">
+                                                <select class="form-control select2 controls" name = "njesia_other" id="njesia_other" required="required">
+                                                    <option value=""></option>
+                                                    {% for njesi in doza_njesia %}
+                                                        <option value="{{ njesi.id }}">{{ njesi.getNjesia() }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group col-md-4">
+                                            <label for="lenda_aktive_other" class="col-md-4 control-label">Lënda aktive</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" id="lenda_aktive_other" name="lenda_aktive_other" placeholder="Lënda aktive" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="pastertia_other" class="col-md-4 control-label">Pastërtia</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" id="pastertia_other" name="pastertia_other" placeholder="Pastërtia" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="firma_other" class="col-md-4 control-label">Firma</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control"  name = "firma_other" id="firma_other"  placeholder="Firma prodhueser" readonly>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="arsyeja_paresore_other" class="col-md-2 control-label">Arsyeja parësore e aplikimit</label>
+                                            <div class="col-md-10">
+                                                <select class="form-control select2 controls" name = "arsyeja_paresore_other" id="arsyeja_paresore_other" required="required">
+                                                    <option value=""></option>
+                                                    {% for arsye in arsye_aplikimi %}
+                                                        <option value="{{ arsye.id }}">{{ arsye.getArsyeAplikimi() }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="arsyeja_dytesore_other" class="col-md-2 control-label">Arsyeja dytësore e aplikimit</label>
+                                            <div class="col-md-10">
+                                                <select class="form-control select2 controls" name = "arsyeja_dytesore_other" id="arsyeja_dytesore_other" required="required">
+                                                    <option value=""></option>
+                                                    {% for arsye in arsye_aplikimi %}
+                                                        <option value="{{ arsye.id }}">{{ arsye.getArsyeAplikimi() }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="justifikim_other" class="col-md-2 control-label">Justifikimi i aplikimit</label>
+                                            <div class="col-md-10">
+                                                <select class="form-control select2 controls" name = "justifikim_other" id="justifikim_other" required="required">
+                                                    <option value=""></option>
+                                                    {% for justifikim in justifikim_aplikimi %}
+                                                        <option value="{{ justifikim.id }}">{{ justifikim.getJustifikimAplikimi() }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="vezhgime_other" class="col-md-2 control-label">Vëzhgime</label>
+                                            <div class="col-md-10">
+                                                <textarea class="form-control" id="vezhgime_other" name="vezhgime_other"> </textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <input type="button" onclick="submitOthers()" class="btn btn-danger" value="Ruaj dhe vazhdo">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div><!-- /.tab-pane -->
+
+
+                        </div><!-- /.tab-content -->
+                        </div><!-- /.nav-tabs-custom -->
+                        </div><!-- /.col -->
+
+
+
+
+
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+                </div>
+            </div>
+        </section><!-- Main content -->
+    </div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+        function submitHerbicide(){
+            var form = $('#herbicide_form');
+
+            $.ajax({
+                url: "{{ path('submit_herbicide') }}",
+                type: 'GET',
+                data: form.serialize(),
+                success: function(json){
+                    $.each(json, function(index, value) {
+//                       alert('u fut me sukses');
+                        $.notify('Të dhënat u ruajtën me sukses!', "success");
+//                        $('#justifikim_herbicid').append('<option value="'+ value.aplikimi +'">'+ value.aplikimi +'</option>');
+                       form.trigger("reset");
+                        document.getElementById("herbicide_form").reset();
+                    });
+//                    $('#herbicide_form').trigger("reset");
+                  {#$('#aplikimi_number_herbicid').attr('value', {{ app.session.get('aplikim_number') }});#}
+                    document.getElementById("herbicide_form").reset();
+                },
+                error: function(xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+        }
+    </script>
+
+
+
+    <script type="text/javascript">
+        function submitInsekticide(){
+            var form = $('#insekticide');
+
+            $.ajax({
+                url: "{{ path('submit_insekticide') }}",
+                type: 'GET',
+                data: form.serialize(),
+                success: function(json){
+                    $.each(json, function(index, value) {
+//                        $('#justifikim_herbicid').append('<option value="'+ value.aplikimi +'">'+ value.aplikimi +'</option>');
+                        form.trigger("reset");
+                        document.getElementById("insekticide").reset();
+                    });
+//                    $('#herbicide').trigger("reset");
+                    document.getElementById("insekticide").reset();
+
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function submitFungicide(){
+            var form = $('#fungicide');
+
+            $.ajax({
+                url: "{{ path('submit_fungicide') }}",
+                type: 'GET',
+                data: form.serialize(),
+                success: function(json){
+                    $.each(json, function(index, value) {
+//                        $('#justifikim_herbicid').append('<option value="'+ value.aplikimi +'">'+ value.aplikimi +'</option>');
+                        form.trigger("reset");
+                        document.getElementById("fungicide").reset();
+                    });
+//                    $('#herbicide').trigger("reset");
+                    document.getElementById("fungicide").reset();
+
+                }
+            });
+        }
+    </script>
+
+
+    <script type="text/javascript">
+        function submitOthers(){
+            var form = $('#others');
+
+            $.ajax({
+                url: "{{ path('submit_others') }}",
+                type: 'GET',
+                data: form.serialize(),
+                success: function(json){
+                    $.each(json, function(index, value) {
+//                        $('#justifikim_herbicid').append('<option value="'+ value.aplikimi +'">'+ value.aplikimi +'</option>');
+                    document.getElementById("others").reset();
+                    });
+//                    $('#herbicide').trigger("reset");
+                    document.getElementById("others").reset();
+
+                }
+            });
+        }
+    </script>
+
+    <script>
+        $('#produkti_herbicid').change(function(){
+            var sel = $('#produkti_herbicid option:selected');
+            var lenda_aktive_herbicid = sel.attr('lenda_aktive_herbicid');
+            var pastertia_herbicid = sel.attr('pastertia_herbicid');
+            var firma_herbicid = sel.attr('firma_herbicid');
+
+           $('#lenda_aktive_herbicid') .val(lenda_aktive_herbicid);
+           $('#pastertia_herbicid') .val(pastertia_herbicid);
+           $('#firma_herbicid') .val(firma_herbicid);
+
+        });
+    </script>
+
+
+    <script>
+        $('#produkti_insekticid').change(function(){
+            var sel = $('#produkti_insekticid option:selected');
+            var lenda_aktive_insekticid = sel.attr('lenda_aktive_insekticid');
+            var pastertia_insekticid = sel.attr('pastertia_insekticid');
+            var firma_insekticid = sel.attr('firma_insekticid');
+
+            $('#lenda_aktive_insekticid') .val(lenda_aktive_insekticid);
+            $('#pastertia_insekticid') .val(pastertia_insekticid);
+            $('#firma_insekticid') .val(firma_insekticid);
+
+        });
+    </script>
+
+    <script>
+        $('#produkti_fungicid').change(function(){
+            var sel = $('#produkti_fungicid option:selected');
+            var lenda_aktive_fungicid = sel.attr('lenda_aktive_fungicid');
+            var pastertia_fungicid = sel.attr('pastertia_fungicid');
+            var firma_fungicid = sel.attr('firma_fungicid');
+
+            $('#lenda_aktive_fungicid') .val(lenda_aktive_fungicid);
+            $('#pastertia_fungicid') .val(pastertia_fungicid);
+            $('#firma_fungicid') .val(firma_fungicid);
+
+        });
+    </script>
+
+    <script>
+        $('#produkti_other').change(function(){
+            var sel = $('#produkti_other option:selected');
+            var lenda_aktive_other = sel.attr('lenda_aktive_other');
+            var pastertia_other = sel.attr('pastertia_other');
+            var firma_other = sel.attr('firma_other');
+
+            $('#lenda_aktive_other') .val(lenda_aktive_other);
+            $('#pastertia_other') .val(pastertia_other);
+            $('#firma_other') .val(firma_other);
+
+        });
+    </script>
+
+{% endblock %}

@@ -1,0 +1,250 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * AplikimePleherimi
+ *
+ * @ORM\Table(name="aplikime_pleherimi", indexes={@ORM\Index(name="fk_tipi_aplikimit_pleherim_idx", columns={"tipi_aplikimit"}), @ORM\Index(name="fk_modeli_aplikimit_idx", columns={"modeli_aplikimit"}), @ORM\Index(name="fk_produkti_komercial_idx", columns={"produkti_komercial_pleherimit"}), @ORM\Index(name="fk_justifikimi_pleherimit_idx", columns={"justifikimi_aplikimit"}), @ORM\Index(name="fk_parcela_pleherimi_idx", columns={"parcela"})})
+ * @ORM\Entity
+ */
+class AplikimePleherimi
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_aplikimit", type="date", nullable=true)
+     */
+    private $dataAplikimit;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="siperfaqja_aplikimit", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $siperfaqjaAplikimit;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lenda_aktive", type="string", length=100, nullable=true)
+     */
+    private $lendaAktive;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="doza_aplikimit", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $dozaAplikimit;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="njesia_aplikimit", type="integer", nullable=true)
+     */
+    private $njesiaAplikimit;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="nitrat", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $nitrat;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="fosfor", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $fosfor;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="potasium", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $potasium;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="nitrat_uf", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $nitratUf;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="fosfor_uf", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $fosforUf;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="potasium_uf", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $potasiumUf;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="calcium", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $calcium;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="magnez", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $magnez;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="squfur", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $squfur;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="hekur", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $hekur;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="zink", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $zink;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="mangan", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $mangan;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="molibdenum", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $molibdenum;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="bor", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $bor;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="klor", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $klor;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="firma_shperndarese", type="integer", nullable=true)
+     */
+    private $firmaShperndarese;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="densiteti_pleherimit", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $densitetiPleherimit;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="aplikime_pleherim_ujitje", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $aplikimePleherimUjitje;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="aplikime_pleherimi_aplikuar", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $aplikimePleherimiAplikuar;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="vezhgime", type="string", length=300, nullable=true)
+     */
+    private $vezhgime;
+
+    /**
+     * @var \SettingsPleherimiTipi
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsPleherimiTipi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="tipi_aplikimit", referencedColumnName="id")
+     * })
+     */
+    private $tipiAplikimit;
+
+    /**
+     * @var \SettingsModeliPleherimit
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsModeliPleherimit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="modeli_aplikimit", referencedColumnName="id")
+     * })
+     */
+    private $modeliAplikimit;
+
+    /**
+     * @var \SettingsProduktiKomercial
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsProduktiKomercial")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="produkti_komercial_pleherimit", referencedColumnName="id")
+     * })
+     */
+    private $produktiKomercialPleherimit;
+
+    /**
+     * @var \SettingsPleherimiJustifikim
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsPleherimiJustifikim")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="justifikimi_aplikimit", referencedColumnName="id")
+     * })
+     */
+    private $justifikimiAplikimit;
+
+    /**
+     * @var \ParcelaIdentifikimi
+     *
+     * @ORM\ManyToOne(targetEntity="ParcelaIdentifikimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parcela", referencedColumnName="id")
+     * })
+     */
+    private $parcela;
+
+
+}

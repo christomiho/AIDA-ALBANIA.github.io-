@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>MostraSyriPalloit</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mostraSyriPalloit.id }}</td>
+            </tr>
+            <tr>
+                <th>Datasyripalloit</th>
+                <td>{% if mostraSyriPalloit.dataSyriPalloit %}{{ mostraSyriPalloit.dataSyriPalloit|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Perqindjelastareinfektuar</th>
+                <td>{{ mostraSyriPalloit.perqindjeLastareinfektuar }}</td>
+            </tr>
+            <tr>
+                <th>Perqindjegjetheinfektuara</th>
+                <td>{{ mostraSyriPalloit.perqindjeGjetheInfektuara }}</td>
+            </tr>
+            <tr>
+                <th>Perqindjedemtuesinkubuargjethe</th>
+                <td>{{ mostraSyriPalloit.perqindjeDemtuesInkubuarGjethe }}</td>
+            </tr>
+            <tr>
+                <th>Perqindjefletasimptoma</th>
+                <td>{{ mostraSyriPalloit.perqindjeFletaSimptoma }}</td>
+            </tr>
+            <tr>
+                <th>Kushtefavorshme</th>
+                <td>{{ mostraSyriPalloit.kushteFavorshme }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mostrasyripalloit_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('mostrasyripalloit_edit', { 'id': mostraSyriPalloit.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

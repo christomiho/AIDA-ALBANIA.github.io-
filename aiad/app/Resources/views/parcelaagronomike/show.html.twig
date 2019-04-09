@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ParcelaAgronomike</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ parcelaAgronomike.id }}</td>
+            </tr>
+            <tr>
+                <th>Pjerresia</th>
+                <td>{{ parcelaAgronomike.pjerresia }}</td>
+            </tr>
+            <tr>
+                <th>Siperfaqja</th>
+                <td>{{ parcelaAgronomike.siperfaqja }}</td>
+            </tr>
+            <tr>
+                <th>Vezhgimetjera</th>
+                <td>{{ parcelaAgronomike.vezhgimeTjera }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('parcelaagronomike_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('parcelaagronomike_edit', { 'id': parcelaAgronomike.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

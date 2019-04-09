@@ -1,0 +1,75 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Mostra</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Prais Antofage</h3>
+                        <div class="box-tools pull-right">
+                            {#<a class="btn btn-info pull-left" href="{{ path('mostrapraisantofage_new') }}">Shto të re</a>#}
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table table-responsive" id="dataTables-2">
+                            <thead>
+            <tr >
+                <th class='nr_column_first'>#</th>
+                <th>Data e vëzhgimit</th>
+                <th>(%) e luleve të prekura</th>
+                <th>(%) e luleve të prekura / forma të gjalla</th>
+                <th>Prais antofage / lastarë totalë</th>
+                <th>(%) e lastarëve të infektuar</th>
+                <th>(%) e vezëve në çelje</th>
+                <th>Modifiko</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% set i =1 %}
+        {% for mostraPraisAntofage in mostraPraisAntofages %}
+            <tr >
+                <td>{{ i }}</td>
+                <td>{% if mostraPraisAntofage.dataPraisAntofage %}{{ mostraPraisAntofage.dataPraisAntofage|date('d-m-Y') }}{% endif %}</td>
+                <td>{{ mostraPraisAntofage.perqindjeLulePrekura }}</td>
+                <td>{{ mostraPraisAntofage.ratioPerqindjeluleprekuraFormagjalla }}</td>
+                <td>{{ mostraPraisAntofage.ratioPraisantofageLastar }}</td>
+                <td>{{ mostraPraisAntofage.perqindjeLastareinfektuar }}</td>
+                <td>{{ mostraPraisAntofage.perqindjeVezenecelje }}</td>
+                <td>
+                    <a href="{{ path('mostrapraisantofage_edit', { 'id': mostraPraisAntofage.id }) }}"><span class="glyphicon glyphicon-edit"></span></a>
+                </td>
+            </tr>
+            {% set i=i+1 %}
+        {% endfor %}
+        </tbody>
+                        </table>
+                    </div><!-- /.table-responsive -->
+
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div>
+    </section><!-- Main content -->
+</div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(function(){
+            $('#dataTables-2').DataTable({
+            });
+        });
+    </script>
+{% endblock %}

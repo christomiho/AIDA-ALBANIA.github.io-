@@ -1,0 +1,137 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * AplikimeSemundjeTedhena
+ *
+ * @ORM\Table(name="aplikime_semundje_tedhena", indexes={@ORM\Index(name="fk_arsye_semundje_1_idx", columns={"arsyeja_aplikimit_1"}), @ORM\Index(name="fk_arsye_semundje_2_idx", columns={"arsyeja_aplikimit_2"}), @ORM\Index(name="fk_justifikimi_idx", columns={"justifikimi"}), @ORM\Index(name="fk_produkti_komercial_njesia_idx", columns={"produkti_komercial_njesia"}), @ORM\Index(name="fk_produkti_komercial_emri_idx", columns={"produkti_komercial_emri"}), @ORM\Index(name="fk_lloji_aplikimit_idx", columns={"lloji_aplikimit"}), @ORM\Index(name="fk_tabela_permbledhese_semundjeve_idx", columns={"referimi_tabela_permbledhese"})})
+ * @ORM\Entity
+ */
+class AplikimeSemundjeTedhena
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_aplikimit", type="date", nullable=true)
+     */
+    private $dataAplikimit;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="produkti_komercial_doza", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $produktiKomercialDoza;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="materiali_aktiv_lenda_aktive", type="string", length=100, nullable=true)
+     */
+    private $materialiAktivLendaAktive;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="materiali_aktiv_pastertia", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $materialiAktivPastertia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="emri_firmes", type="string", length=100, nullable=true)
+     */
+    private $emriFirmes;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="vezhgime", type="string", length=150, nullable=true)
+     */
+    private $vezhgime;
+
+    /**
+     * @var \SettingsArsyeAplikimiSemundje
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsArsyeAplikimiSemundje")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="arsyeja_aplikimit_1", referencedColumnName="id")
+     * })
+     */
+    private $arsyejaAplikimit1;
+
+    /**
+     * @var \SettingsArsyeAplikimiSemundje
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsArsyeAplikimiSemundje")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="arsyeja_aplikimit_2", referencedColumnName="id")
+     * })
+     */
+    private $arsyejaAplikimit2;
+
+    /**
+     * @var \SettingsJustifikimAplikimiSemundje
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsJustifikimAplikimiSemundje")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="justifikimi", referencedColumnName="id")
+     * })
+     */
+    private $justifikimi;
+
+    /**
+     * @var \SettingsDozaNjesia
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsDozaNjesia")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="produkti_komercial_njesia", referencedColumnName="id")
+     * })
+     */
+    private $produktiKomercialNjesia;
+
+    /**
+     * @var \SettingsProduktiKomercial
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsProduktiKomercial")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="produkti_komercial_emri", referencedColumnName="id")
+     * })
+     */
+    private $produktiKomercialEmri;
+
+    /**
+     * @var \AplikimeSemundje
+     *
+     * @ORM\ManyToOne(targetEntity="AplikimeSemundje")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="lloji_aplikimit", referencedColumnName="id")
+     * })
+     */
+    private $llojiAplikimit;
+
+    /**
+     * @var \TabelaPermbledheseAplikimSemundjesh
+     *
+     * @ORM\ManyToOne(targetEntity="TabelaPermbledheseAplikimSemundjesh")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="referimi_tabela_permbledhese", referencedColumnName="id")
+     * })
+     */
+    private $referimiTabelaPermbledhese;
+
+
+}

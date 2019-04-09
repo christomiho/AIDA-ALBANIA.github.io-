@@ -1,0 +1,60 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Pronari
+ *
+ * @ORM\Table(name="pronari")
+ * @ORM\Entity
+ */
+class Pronari
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="emer", type="string", length=100, nullable=true)
+     */
+    private $emer;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mbiemer", type="string", length=100, nullable=true)
+     */
+    private $mbiemer;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="numri_id", type="string", length=100, nullable=true)
+     */
+    private $numriId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="numer_telefoni", type="string", length=100, nullable=true)
+     */
+    private $numerTelefoni;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=100, nullable=true)
+     */
+    private $email;
+
+
+}

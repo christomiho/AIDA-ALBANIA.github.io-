@@ -1,0 +1,32 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * SettingsLlojiUllinjve
+ *
+ * @ORM\Table(name="settings_lloji_ullinjve")
+ * @ORM\Entity
+ */
+class SettingsLlojiUllinjve
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lloji_ullinjve", type="string", length=150, nullable=true)
+     */
+    private $llojiUllinjve;
+
+
+}

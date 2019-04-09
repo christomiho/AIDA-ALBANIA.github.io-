@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>MostraKalimiPragut</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mostraKalimiPragut.id }}</td>
+            </tr>
+            <tr>
+                <th>Datakalimipragut</th>
+                <td>{% if mostraKalimiPragut.dataKalimipragut %}{{ mostraKalimiPragut.dataKalimipragut|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Kocinija</th>
+                <td>{% if mostraKalimiPragut.kocinija %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Praisfilofage</th>
+                <td>{% if mostraKalimiPragut.praisFilofage %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Praisantofage</th>
+                <td>{% if mostraKalimiPragut.praisAntofage %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Praiskarpofage</th>
+                <td>{% if mostraKalimiPragut.praisKarpofage %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Praisstadilarvor</th>
+                <td>{% if mostraKalimiPragut.praisStadiLarvor %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Miza</th>
+                <td>{% if mostraKalimiPragut.miza %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Barrenijo</th>
+                <td>{% if mostraKalimiPragut.barrenijo %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Syripalloit</th>
+                <td>{% if mostraKalimiPragut.syriPalloit %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Verticilium</th>
+                <td>{% if mostraKalimiPragut.verticilium %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mostrakalimipragut_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('mostrakalimipragut_edit', { 'id': mostraKalimiPragut.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

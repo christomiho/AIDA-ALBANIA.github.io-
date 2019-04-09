@@ -1,0 +1,76 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * SettingsProduktiKomercial
+ *
+ * @ORM\Table(name="settings_produkti_komercial", indexes={@ORM\Index(name="fk_lenda_aktive_idx", columns={"lenda_aktive"}), @ORM\Index(name="fk_firma_idx", columns={"firma"}), @ORM\Index(name="fk_lloji_produktit_idx", columns={"kategoria_produktit_komercial"})})
+ * @ORM\Entity
+ */
+class SettingsProduktiKomercial
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="emri", type="string", length=150, nullable=true)
+     */
+    private $emri;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="pastertia", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $pastertia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="perdorimi_rekomanduar", type="string", length=250, nullable=true)
+     */
+    private $perdorimiRekomanduar;
+
+    /**
+     * @var \SettingsLendaAktive
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsLendaAktive")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="lenda_aktive", referencedColumnName="id")
+     * })
+     */
+    private $lendaAktive;
+
+    /**
+     * @var \SettingsFirmaProdukteve
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsFirmaProdukteve")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="firma", referencedColumnName="id")
+     * })
+     */
+    private $firma;
+
+    /**
+     * @var \LlojiProduktitKomercial
+     *
+     * @ORM\ManyToOne(targetEntity="LlojiProduktitKomercial")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="kategoria_produktit_komercial", referencedColumnName="id")
+     * })
+     */
+    private $kategoriaProduktitKomercial;
+
+
+}

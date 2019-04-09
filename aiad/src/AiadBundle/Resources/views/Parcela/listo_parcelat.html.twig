@@ -1,0 +1,92 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+    <div class="content-wrapper bounceInUp animated">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1> Parcelat nën mbikqyrjen e {{ app.user.name }} {{ app.user.surname }}</h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="row ">
+                <div class="col-md-12">
+
+                    <!-- TABLE: LATEST ORDERS -->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Parcelat Identifikimi</h3>
+                            <div class="box-tools pull-right">
+                                <a class="btn btn-info pull-left" href="{{ path('new_parcel') }}">Shto të re</a>
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <table class="table table-responsive" id="dataTables-2">
+                                <thead>
+                                <tr>
+                                    <th class="nr_column_first"></th>
+                                    <th class="nr_column_first">#</th>
+                                    <th>Viti i Prodhimit</th>
+                                    <th>Emri i Parcelës</th>
+                                    <th>Kodi i Parcelës</th>
+                                    <th>Pronari</th>
+                                    <th>Gjerësia Gjeografike</th>
+                                    <th>Gjatesia Gjeografike</th>
+                                    <th>Lartësia</th>
+                                    <th>Vendndodhja</th>
+                                    <th>Modifiko</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% set i=1 %}
+                                {% for p in parcelat %}
+                                    <tr>
+
+                                        <td>
+                                            <a href="{{ path('set_session', { 'id': p.getParcel().getId() } ) }}">
+                                                <span class="glyphicon glyphicon-check"></span>
+                                            </a>
+                                        </td>
+                                        <td>{{ i }}</td>
+                                        <td>{{ p.getParcel().getVitiProdhimit() }}</td>
+                                        <td>{{ p.getParcel().getEmriParceles() }}</td>
+                                        <td>{{ p.getParcel().getKodi() }}</td>
+                                        <td>{{ p.getParcel().getPronari() }}</td>
+                                        <td>{{ p.getParcel().getKordinataX() }}</td>
+                                        <td>{{ p.getParcel().getKordinataY() }}</td>
+                                        <td>{{ p.getParcel().getLartesia() }}</td>
+                                        <td>{{ p.getParcel().getFshati() }}</td>
+
+
+                                        <td style="text-align: center">
+
+                                            <a href="{{ path('parcelaidentifikimi_edit', { 'id': p.getParcel().getId() }) }}"><span class="glyphicon glyphicon-edit"></span></a>
+
+                                        </td>
+
+                                    </tr>
+                                    {% set i=i+1 %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div><!-- /.table-responsive -->
+
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div>
+        </section><!-- Main content -->
+    </div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(function(){
+            $('#dataTables-2').DataTable({
+            });
+        });
+    </script>
+{% endblock %}

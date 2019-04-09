@@ -1,0 +1,103 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * NderhyrjetPunimitokes
+ *
+ * @ORM\Table(name="nderhyrjet_punimitokes", indexes={@ORM\Index(name="fk_punimitokes_mjeti_idx", columns={"mjeti_perdorur"}), @ORM\Index(name="fk_shperndarja_punimittokes_idx", columns={"shperndarja_punimit"}), @ORM\Index(name="fk_tipi_punimittokes_idx", columns={"tipi_punimit"}), @ORM\Index(name="fk_arsyeja_punimittokes_idx", columns={"tipi_punimit_arsyeja"}), @ORM\Index(name="fk_parcela_punimitokes_idx", columns={"parcela"})})
+ * @ORM\Entity
+ */
+class NderhyrjetPunimitokes
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_punimit_tokes", type="date", nullable=true)
+     */
+    private $dataPunimitTokes;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="sip_punuar", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $sipPunuar;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="thellesia_max_punimit", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $thellesiaMaxPunimit;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="vezhgime", type="string", length=150, nullable=true)
+     */
+    private $vezhgime;
+
+    /**
+     * @var \SettingsMjete
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsMjete")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="mjeti_perdorur", referencedColumnName="id")
+     * })
+     */
+    private $mjetiPerdorur;
+
+    /**
+     * @var \SettingsShperndarjaPunimitTokes
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsShperndarjaPunimitTokes")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="shperndarja_punimit", referencedColumnName="id")
+     * })
+     */
+    private $shperndarjaPunimit;
+
+    /**
+     * @var \SettingsTipiPunimit
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsTipiPunimit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="tipi_punimit", referencedColumnName="id")
+     * })
+     */
+    private $tipiPunimit;
+
+    /**
+     * @var \SettingsArsyejaTipitPunimit
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsArsyejaTipitPunimit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="tipi_punimit_arsyeja", referencedColumnName="id")
+     * })
+     */
+    private $tipiPunimitArsyeja;
+
+    /**
+     * @var \ParcelaIdentifikimi
+     *
+     * @ORM\ManyToOne(targetEntity="ParcelaIdentifikimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parcela", referencedColumnName="id")
+     * })
+     */
+    private $parcela;
+
+
+}

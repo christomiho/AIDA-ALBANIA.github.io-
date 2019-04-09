@@ -1,0 +1,84 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * MostraSemundjeTjera
+ *
+ * @ORM\Table(name="mostra_semundje_tjera", indexes={@ORM\Index(name="fk_parcela_semundje_tjera_idx", columns={"parcela"})})
+ * @ORM\Entity
+ */
+class MostraSemundjeTjera
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_semundje_tjera", type="date", nullable=true)
+     */
+    private $dataSemundjeTjera;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="perqindje_frutasapunifikuara_frutasimptoma", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $perqindjeFrutasapunifikuaraFrutasimptoma;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="perqindje_eskudete_frutasimptoma", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $perqindjeEskudeteFrutasimptoma;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="perqindje_lepra_frutasimptoma", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $perqindjeLepraFrutasimptoma;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="perqindje_frutakalbura_frutasimptoma", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $perqindjeFrutakalburaFrutasimptoma;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="turbekuloza_simptoma", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $turbekulozaSimptoma;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="asfiksia_rrenjeve_pemeinfektuara", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $asfiksiaRrenjevePemeinfektuara;
+
+    /**
+     * @var \ParcelaIdentifikimi
+     *
+     * @ORM\ManyToOne(targetEntity="ParcelaIdentifikimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parcela", referencedColumnName="id")
+     * })
+     */
+    private $parcela;
+
+
+}

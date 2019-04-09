@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>NderhyrjetPunimitokes</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ nderhyrjetPunimitoke.id }}</td>
+            </tr>
+            <tr>
+                <th>Datapunimittokes</th>
+                <td>{% if nderhyrjetPunimitoke.dataPunimitTokes %}{{ nderhyrjetPunimitoke.dataPunimitTokes|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Sippunuar</th>
+                <td>{{ nderhyrjetPunimitoke.sipPunuar }}</td>
+            </tr>
+            <tr>
+                <th>Thellesiamaxpunimit</th>
+                <td>{{ nderhyrjetPunimitoke.thellesiaMaxPunimit }}</td>
+            </tr>
+            <tr>
+                <th>Vezhgime</th>
+                <td>{{ nderhyrjetPunimitoke.vezhgime }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('nderhyrjetpunimitokes_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('nderhyrjetpunimitokes_edit', { 'id': nderhyrjetPunimitoke.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

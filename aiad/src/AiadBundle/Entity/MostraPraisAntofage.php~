@@ -1,0 +1,77 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * MostraPraisAntofage
+ *
+ * @ORM\Table(name="mostra_prais_antofage", indexes={@ORM\Index(name="fk_parcela_antofage_idx", columns={"parcela"})})
+ * @ORM\Entity
+ */
+class MostraPraisAntofage
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_prais_antofage", type="date", nullable=true)
+     */
+    private $dataPraisAntofage;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="perqindje_lule_prekura", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $perqindjeLulePrekura;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_perqindjeluleprekura_formagjalla", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioPerqindjeluleprekuraFormagjalla;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_praisantofage_lastar", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioPraisantofageLastar;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="perqindje_lastareinfektuar", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $perqindjeLastareinfektuar;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="perqindje_vezenecelje", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $perqindjeVezenecelje;
+
+    /**
+     * @var \ParcelaIdentifikimi
+     *
+     * @ORM\ManyToOne(targetEntity="ParcelaIdentifikimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parcela", referencedColumnName="id")
+     * })
+     */
+    private $parcela;
+
+
+}

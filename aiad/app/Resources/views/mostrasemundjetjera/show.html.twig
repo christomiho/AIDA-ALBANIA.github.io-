@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>MostraSemundjeTjera</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mostraSemundjeTjera.id }}</td>
+            </tr>
+            <tr>
+                <th>Datasemundjetjera</th>
+                <td>{% if mostraSemundjeTjera.dataSemundjeTjera %}{{ mostraSemundjeTjera.dataSemundjeTjera|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Perqindjefrutasapunifikuarafrutasimptoma</th>
+                <td>{{ mostraSemundjeTjera.perqindjeFrutasapunifikuaraFrutasimptoma }}</td>
+            </tr>
+            <tr>
+                <th>Perqindjeeskudetefrutasimptoma</th>
+                <td>{{ mostraSemundjeTjera.perqindjeEskudeteFrutasimptoma }}</td>
+            </tr>
+            <tr>
+                <th>Perqindjeleprafrutasimptoma</th>
+                <td>{{ mostraSemundjeTjera.perqindjeLepraFrutasimptoma }}</td>
+            </tr>
+            <tr>
+                <th>Perqindjefrutakalburafrutasimptoma</th>
+                <td>{{ mostraSemundjeTjera.perqindjeFrutakalburaFrutasimptoma }}</td>
+            </tr>
+            <tr>
+                <th>Turbekulozasimptoma</th>
+                <td>{{ mostraSemundjeTjera.turbekulozaSimptoma }}</td>
+            </tr>
+            <tr>
+                <th>Asfiksiarrenjevepemeinfektuara</th>
+                <td>{{ mostraSemundjeTjera.asfiksiaRrenjevePemeinfektuara }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mostrasemundjetjera_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('mostrasemundjetjera_edit', { 'id': mostraSemundjeTjera.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

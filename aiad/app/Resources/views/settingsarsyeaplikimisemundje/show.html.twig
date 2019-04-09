@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>SettingsArsyeAplikimiSemundje</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ settingsArsyeAplikimiSemundje.id }}</td>
+            </tr>
+            <tr>
+                <th>Arsyeaplikimi</th>
+                <td>{{ settingsArsyeAplikimiSemundje.arsyeAplikimi }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('settingsarsyeaplikimisemundje_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('settingsarsyeaplikimisemundje_edit', { 'id': settingsArsyeAplikimiSemundje.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

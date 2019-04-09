@@ -1,0 +1,90 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Mostra</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Prodhimi i parashikuar</h3>
+                        <div class="box-tools pull-right">
+                            {#<a class="btn btn-info pull-left" href="{{ path('mostraprodhimiparashikuar_new') }}">Shto të re</a>#}
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table table-responsive" id="dataTables-2">
+                            <thead>
+
+            <tr>
+                <th class='nr_column_first'>#</th>
+                <th>Data e Vëzhgimit</th>
+                <th>Mesatarja e lulëzimit / lastarë total</th>
+                <th>Mesatarja e lulëzimit fertil/ lastarë total</th>
+                <th>Fruta para rënies parë / lastarë total</th>
+                <th>Fruta pas rënies parë / lastarë total</th>
+                <th>Fruta para rënies dytë / lastarë total</th>
+                <th>Pesha mesatare e frutit (gr)</th>
+                <th>Parashikimi i prodhimit (Kg/ha)</th>
+                <th>Parashikimi i prodhimit (Kg/Parcelë)</th>
+                <th>Lule fertile (%)</th>
+                <th>Gjatësia e frutit (cm)</th>
+                <th>Diametri i frutit (cm)</th>
+                <th>Modifiko</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% set i=1 %}
+        {% for mostraProdhimiParashikuar in mostraProdhimiParashikuars %}
+            <tr>
+                <td>{{ i }}</td>
+                <td>{% if mostraProdhimiParashikuar.dataProdhimiParashikuar %}{{ mostraProdhimiParashikuar.dataProdhimiParashikuar|date('d-m-Y') }}{% endif %}</td>
+                <td>{{ mostraProdhimiParashikuar.ratioMeslulezimLastartotal }}</td>
+                <td>{{ mostraProdhimiParashikuar.ratioMeslulezimfertilLastartotal }}</td>
+                <td>{{ mostraProdhimiParashikuar.ratioFrutaparareniesLastaretotal }}</td>
+                <td>{{ mostraProdhimiParashikuar.ratioFrutapasreniesLastaretotal }}</td>
+                <td>{{ mostraProdhimiParashikuar.ratioFrutaparareniesdyteLastaretotal }}</td>
+                <td>{{ mostraProdhimiParashikuar.peshaMesatareFrutit }}</td>
+                <td>{{ mostraProdhimiParashikuar.parashikimiProdhimitHa }}</td>
+                <td>{{ mostraProdhimiParashikuar.parashikimiProdhimitParcele }}</td>
+                <td>{{ mostraProdhimiParashikuar.perqindjeLuleshFertile }}</td>
+                <td>{{ mostraProdhimiParashikuar.gjatesiaFrutit }}</td>
+                <td>{{ mostraProdhimiParashikuar.diametriFrutit }}</td>
+                <td style="text-align: center">
+
+                            <a href="{{ path('mostraprodhimiparashikuar_edit', { 'id': mostraProdhimiParashikuar.id }) }}"><span class="glyphicon glyphicon-edit"></span></a>
+
+                </td>
+            </tr>
+            {% set i=i+1 %}
+        {% endfor %}
+        </tbody>
+                        </table>
+                    </div><!-- /.table-responsive -->
+
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div>
+    </section><!-- Main content -->
+</div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(function(){
+            $('#dataTables-2').DataTable({
+            });
+        });
+    </script>
+{% endblock %}

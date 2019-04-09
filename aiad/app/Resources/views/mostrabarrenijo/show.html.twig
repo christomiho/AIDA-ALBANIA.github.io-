@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>MostraBarrenijo</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mostraBarrenijo.id }}</td>
+            </tr>
+            <tr>
+                <th>Databarrenijo</th>
+                <td>{% if mostraBarrenijo.dataBarrenijo %}{{ mostraBarrenijo.dataBarrenijo|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Ratiovrimahyrjenjesimostre</th>
+                <td>{{ mostraBarrenijo.ratioVrimahyrjeNjesimostre }}</td>
+            </tr>
+            <tr>
+                <th>Ratiovrimadaljenjesimostre</th>
+                <td>{{ mostraBarrenijo.ratioVrimadaljeNjesimostre }}</td>
+            </tr>
+            <tr>
+                <th>Perqindjelastarprekur</th>
+                <td>{{ mostraBarrenijo.perqindjeLastarprekur }}</td>
+            </tr>
+            <tr>
+                <th>Ratiolastarprekurformagjalla</th>
+                <td>{{ mostraBarrenijo.ratioLastarprekurFormagjalla }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mostrabarrenijo_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('mostrabarrenijo_edit', { 'id': mostraBarrenijo.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

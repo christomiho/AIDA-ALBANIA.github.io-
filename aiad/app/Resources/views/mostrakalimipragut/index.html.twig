@@ -1,0 +1,83 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Mostra</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Kalimi i pragut</h3>
+                        <div class="box-tools pull-right">
+                            {#<a class="btn btn-info pull-left" href="{{ path('mostrakalimipragut_new') }}">Shto të re</a>#}
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table table-responsive" id="dataTables-2">
+                            <thead>
+                                <tr>
+                                    <th class='nr_column_first'>#</th>
+                                    <th>Data e vëzhgimit</th>
+                                    <th>Kocinija: kalon pragun</th>
+                                    <th>Prais filofage: kalon pragun</th>
+                                    <th>Prais antofage: kalon pragun</th>
+                                    <th>Prais karpofage: kalon pragun</th>
+                                    <th>Prais stadi larvor: kalon pragun</th>
+                                    <th>Miza: kalon pragun</th>
+                                    <th>Barrenijo: kalon pragun</th>
+                                    <th>Syri i palloit: kalon pragun</th>
+                                    <th>Verticilium: kalon pragun</th>
+                                    <th>Modifiko</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% set i=1 %}
+                            {% for mostraKalimiPragut in mostraKalimiPraguts %}
+                                <tr>
+                                    <td>{{ i }}</td>
+                                    <td>{% if mostraKalimiPragut.dataKalimipragut %}{{ mostraKalimiPragut.dataKalimipragut|date('d-m-Y') }}{% endif %}</td>
+                                    <td>{% if mostraKalimiPragut.kocinija==1 %}Po{% elseif mostraKalimiPragut.kocinija==0 %}Jo{% else %}Pa monstër{% endif %}</td>
+                                    <td>{% if mostraKalimiPragut.praisFilofage==1 %}Po{% elseif mostraKalimiPragut.praisFilofage==0 %}Jo{% else %}Pa monstër{% endif %}</td>
+                                    <td>{% if mostraKalimiPragut.praisAntofage==1 %}Po{% elseif mostraKalimiPragut.praisAntofage==0 %}Jo{% else %}Pa monstër{% endif %}</td>
+                                    <td>{% if mostraKalimiPragut.praisKarpofage==1 %}Po{% elseif mostraKalimiPragut.praisKarpofage==0 %}Jo{% else %}Pa monstër{% endif %}</td>
+                                    <td>{% if mostraKalimiPragut.praisStadiLarvor==1 %}Po{% elseif mostraKalimiPragut.praisStadiLarvor==0 %}Jo{% else %}Pa monstër{% endif %}</td>
+                                    <td>{% if mostraKalimiPragut.miza==1 %}Po{% elseif mostraKalimiPragut.miza==0 %}Jo{% else %}Pa monstër{% endif %}</td>
+                                    <td>{% if mostraKalimiPragut.barrenijo==1 %}Po{% elseif mostraKalimiPragut.barrenijo==0 %}Jo{% else %}Pa monstër{% endif %}</td>
+                                    <td>{% if mostraKalimiPragut.syriPalloit==1 %}Po{% elseif mostraKalimiPragut.syriPalloit==0 %}Jo{% else %}Pa monstër{% endif %}</td>
+                                    <td>{% if mostraKalimiPragut.verticilium==1 %}Po{% elseif mostraKalimiPragut.verticilium==0 %}Jo{% else %}Pa monstër{% endif %}</td>
+                                    <td style="text-align: center">
+                                        <a href="{{ path('mostrakalimipragut_edit', { 'id': mostraKalimiPragut.id }) }}"><span class="glyphicon glyphicon-edit"></span> </a>
+                                    </td>
+                                </tr>
+                                {% set i=i+1 %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div><!-- /.table-responsive -->
+
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div>
+    </section><!-- Main content -->
+</div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(function(){
+            $('#dataTables-2').DataTable({
+            });
+        });
+    </script>
+{% endblock %}

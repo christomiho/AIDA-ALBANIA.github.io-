@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>MostraFenologjia</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mostraFenologjium.id }}</td>
+            </tr>
+            <tr>
+                <th>Datafenologjia</th>
+                <td>{% if mostraFenologjium.dataFenologjia %}{{ mostraFenologjium.dataFenologjia|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Sythedimerore</th>
+                <td>{% if mostraFenologjium.sytheDimerore %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Sythezhvillim</th>
+                <td>{% if mostraFenologjium.sytheZhvillim %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Lulezimi</th>
+                <td>{% if mostraFenologjium.lulezimi %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Lidhjafrutit</th>
+                <td>{% if mostraFenologjium.lidhjaFrutit %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Ngjyrejeshile</th>
+                <td>{% if mostraFenologjium.ngjyreJeshile %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Ngjyreverdhe</th>
+                <td>{% if mostraFenologjium.ngjyreVerdhe %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Ngjyreviolet</th>
+                <td>{% if mostraFenologjium.ngjyreViolet %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Ngjyrezeze</th>
+                <td>{% if mostraFenologjium.ngjyreZeze %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fruttejpjekur</th>
+                <td>{% if mostraFenologjium.frutTejpjekur %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Lulezimiperqindje</th>
+                <td>{% if mostraFenologjium.lulezimiPerqindje %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mostrafenologjia_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('mostrafenologjia_edit', { 'id': mostraFenologjium.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

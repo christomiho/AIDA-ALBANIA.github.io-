@@ -1,0 +1,32 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * SettingsTipiPunimit
+ *
+ * @ORM\Table(name="settings_tipi_punimit")
+ * @ORM\Entity
+ */
+class SettingsTipiPunimit
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipi_punimit", type="string", length=100, nullable=true)
+     */
+    private $tipiPunimit;
+
+
+}

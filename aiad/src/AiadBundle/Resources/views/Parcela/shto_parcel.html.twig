@@ -1,0 +1,218 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1> Krijo Parcel të Re</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Ploteso të Dhënat e Parcelës</h3>
+                        <div class="box-tools pull-right">
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <form role="form" method="post" action="{{ path ('new_parcel') }}">
+                            <div class="box-body">
+                                <div class="form-group col-md-12">
+                                    <label for="name">Emri i Parcelës</label>
+                                    <input type="text" class="form-control" id="name" name="parcel_name" placeholder="Emri i Parcelës">
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label for="kodi">Kodi i Parcelës</label>
+                                    <input type="text" class="form-control" id="kdoi" name="parcel_code" placeholder="Kodi i Parcelës">
+                                </div>
+
+
+                                <div class="form-group col-md-12">
+                                    <label for="cod-x">Gjerësia Gjeografike (kordinata)</label>
+                                    <input type="text" class="form-control" id="cod-x" name="parcel_cord_x" placeholder="Gjerësia Gjeografike">
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label for="cod-y">Gjatësia Gjeografike (kordinata)</label>
+                                    <input type="text" class="form-control" id="cod-y" name="parcel_cord_y" placeholder="Gjatësia Gjeografike">
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label for="lartesia">Lartësia mbi nivelin e detit (metra)</label>
+                                    <input type="number" class="form-control" id="lartesia" name="lartesia" placeholder="Lartësia mbi nivelin e detit">
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label for="viti">Viti i Prodhimit</label>
+                                    <input type="text" class="form-control" id="viti" name="viti" placeholder="Viti i Prodhimit">
+                                </div>
+
+
+
+                                <div class="form-group col-md-12">
+                                    <label for="qarku">Qarku</label>
+                                    <select class="form-control select2 controls" name = "qarku" id="qarku" onchange="populateQytetet()">
+                                        <option value="">Zgjidh Qarkun</option>
+                                        {% for q in qarqet %}
+                                        <option value="{{ q.id }}">{{ q.emriQarkut }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label for="qyteti">Bashkia</label>
+                                    <select class="form-control select2 controls" name = "bashkia" id="bashkia" onchange="populateFshatrat()">
+                                        <option value="">Zgjidh Bashkinë</option>
+
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label for="fshati">Fshati</label>
+                                    <select class="form-control select2 controls" name = "fshati" id="fshati">
+                                        <option value="">Zgjidh Fshatin</option>
+
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <div class="form-group col-md-6">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="radio" name="pronari_group" value="1" id="ekzistues" class="notyet">
+                                                Pronar Ekzistues
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="radio" name='pronari_group' value="2" id="new">
+                                                Pronar i Ri
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                              <div id="pronari_existing" style="display: none">
+                                <div class="form-group col-md-12">
+                                    <label for="pronari">Zgjidhni Pronarin nga Lista e Mëposhtëme</label>
+                                    <select class="form-control select2 controls" name = "pronari" id="pronari">
+                                        <option value="">Zgjidh Pronarin</option>
+                                        {% for p in pronaret %}
+                                        <option value="{{ p.id }}">{{ p.emer }} {{ p.mbiemer }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                               </div>
+                               <div id="pronari_new" style="display: none">
+                                    <div class="form-group col-md-12">
+                                        <label for="emri">Emri </label>
+                                        <input type="text" class="form-control" id="emri" name="emri" placeholder="Emri i Pronarit">
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="mbiemri">Mbiemri</label>
+                                        <input type="text" class="form-control" id="mbiemri" name="mbiemri" placeholder="Mbiemri i Pronarit">
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="numri_id">Numri i Identifikimit</label>
+                                        <input type="text" class="form-control" id="numri_id" name="numri_id" placeholder="Numri i Identifikimit">
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="telefoni">Numri i Telefonit</label>
+                                        <input type="text" class="form-control" id="telefoni" name="telefoni" placeholder="Numri i Telefonit të Pronarit">
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="email">E-mail</label>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email i Pronarit">
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+
+
+                            <!-- /.box-body -->
+
+                            <div class="box-footer">
+                                <button type="submit" name="submit" class="btn btn-success">Ruaj të Dhënat</button>
+                            </div>
+                        </form>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div>
+            </div>
+    </section><!-- Main content -->
+</div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+
+    <script>
+        $('input[name=pronari_group]').change(function(){
+            var value = $('input[name=pronari_group]:checked').val();
+            if(value==1){
+                $('#pronari_new').css('display', 'none');
+                $('#pronari_existing').fadeIn(500);
+            } else {
+                $('#pronari_existing').css('display', 'none');
+                $('#pronari_new').fadeIn(500);
+            }
+        });
+    </script>
+
+    <script type="text/javascript">
+        function populateQytetet(){
+            var id_select = $('#qarku').val();
+            $.ajax({
+                url: "{{ path('list_bashkite') }}",
+                type: 'GET',
+                data: {'id': id_select},
+                dataType: 'json',
+                success: function(json){
+                    $('#bashkia').html('');
+                    $('#bashkia').append('<option value="#">Zgjidhni Bashkine..</option>');
+                    $.each(json, function(index, value) {
+                        $('#bashkia').append('<option value="'+ value.id +'">'+ value.bashkia +'</option>');
+                    });
+                }
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        function populateFshatrat(){
+            var id_select = $('#bashkia').val();
+            $.ajax({
+                url: "{{ path('list_villages') }}",
+                type: 'GET',
+                data: {'id': id_select},
+                dataType: 'json',
+                success: function(json){
+                    $('#fshati').html('');
+                    $('#fshati').append('<option value="#">Zgjidhni Fshatin..</option>');
+                    $.each(json, function(index, value) {
+                        $('#fshati').append('<option value="'+ value.id +'">'+ value.fshati +'</option>');
+                    });
+                }
+            });
+        }
+    </script>
+
+
+{% endblock %}

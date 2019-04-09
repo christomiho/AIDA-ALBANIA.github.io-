@@ -1,0 +1,26 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+{% include 'AiadBundle:Default:header.html.twig' %}
+{% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+    <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Contenti i formave qe do mbushen dhe listimet e ndryshme do dalin ketu
+            <!--<small>Control panel</small>-->
+        </h1>
+        <!--<ol class="breadcrumb">-->
+        <!--<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>-->
+        <!--<li class="active">Dashboard</li>-->
+        <!--</ol>-->
+    {% if is_granted('ROLE_OPERATOR') %}
+        <b>{{ app.session.get('parcelId') }}</b></br>
+        <b>{{ app.session.get('emriParceles') }}</b></br>
+        <b>{{ app.session.get('kodiParceles') }}</b></br>
+        <b>{{ app.session.get('sip_ha') }}</b></br>
+
+        {% endif %}
+    </section>
+{% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}

@@ -1,0 +1,119 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * MostraProdhimiParashikuar
+ *
+ * @ORM\Table(name="mostra_prodhimi_parashikuar", indexes={@ORM\Index(name="fk_parcela_prodhim_parashikuar_idx", columns={"parcela"})})
+ * @ORM\Entity
+ */
+class MostraProdhimiParashikuar
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_prodhimi_parashikuar", type="date", nullable=true)
+     */
+    private $dataProdhimiParashikuar;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_meslulezim_lastartotal", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioMeslulezimLastartotal;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_meslulezimfertil_lastartotal", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioMeslulezimfertilLastartotal;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_frutapararenies_lastaretotal", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioFrutaparareniesLastaretotal;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_frutapasrenies_lastaretotal", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioFrutapasreniesLastaretotal;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_frutaparareniesdyte_lastaretotal", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioFrutaparareniesdyteLastaretotal;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="pesha_mesatare_frutit", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $peshaMesatareFrutit;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="parashikimi_prodhimit_ha", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $parashikimiProdhimitHa;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="parashikimi_prodhimit_parcele", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $parashikimiProdhimitParcele;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="perqindje_lulesh_fertile", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $perqindjeLuleshFertile;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="gjatesia_frutit", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $gjatesiaFrutit;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="diametri_frutit", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $diametriFrutit;
+
+    /**
+     * @var \ParcelaIdentifikimi
+     *
+     * @ORM\ManyToOne(targetEntity="ParcelaIdentifikimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parcela", referencedColumnName="id")
+     * })
+     */
+    private $parcela;
+
+
+}

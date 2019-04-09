@@ -1,0 +1,42 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * VendndodhjaBashkia
+ *
+ * @ORM\Table(name="vendndodhja_bashkia", indexes={@ORM\Index(name="fk_perkatesia_qarku_bashki_idx", columns={"perkatesia_qarku"})})
+ * @ORM\Entity
+ */
+class VendndodhjaBashkia
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="emri_bashkia", type="string", length=100, nullable=true)
+     */
+    private $emriBashkia;
+
+    /**
+     * @var \VendndodhjaQarku
+     *
+     * @ORM\ManyToOne(targetEntity="VendndodhjaQarku")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="perkatesia_qarku", referencedColumnName="id")
+     * })
+     */
+    private $perkatesiaQarku;
+
+
+}

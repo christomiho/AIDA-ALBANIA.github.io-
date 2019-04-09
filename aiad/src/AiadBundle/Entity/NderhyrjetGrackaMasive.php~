@@ -1,0 +1,116 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * NderhyrjetGrackaMasive
+ *
+ * @ORM\Table(name="nderhyrjet_gracka_masive", indexes={@ORM\Index(name="fk_gracka_parcela_idx", columns={"parcela"}), @ORM\Index(name="fk_gracka_tipi_idx", columns={"tipi"}), @ORM\Index(name="fk_gracka_objektivi_idx", columns={"objektivi_semundjes"}), @ORM\Index(name="fk_gracka_difuzori_idx", columns={"tipi_grackes_difuzorit"}), @ORM\Index(name="fk_ferromoni_idx", columns={"ferromoni"}), @ORM\Index(name="fk_komp_prodhuese_idx", columns={"ferromoni_kompania_prodhuese"}), @ORM\Index(name="fk_komp_shperndarese_idx", columns={"ferromoni_kompania_shperndarese"})})
+ * @ORM\Entity
+ */
+class NderhyrjetGrackaMasive
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_nderhyrjes", type="date", nullable=true)
+     */
+    private $dataNderhyrjes;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="numri_grackave", type="integer", nullable=true)
+     */
+    private $numriGrackave;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="vezhgime", type="string", length=200, nullable=true)
+     */
+    private $vezhgime;
+
+    /**
+     * @var \ParcelaIdentifikimi
+     *
+     * @ORM\ManyToOne(targetEntity="ParcelaIdentifikimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parcela", referencedColumnName="id")
+     * })
+     */
+    private $parcela;
+
+    /**
+     * @var \SettingsGrackaTipi
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsGrackaTipi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="tipi", referencedColumnName="id")
+     * })
+     */
+    private $tipi;
+
+    /**
+     * @var \SettingsGrackaObjektivi
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsGrackaObjektivi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="objektivi_semundjes", referencedColumnName="id")
+     * })
+     */
+    private $objektiviSemundjes;
+
+    /**
+     * @var \SettingsGrackaTipiDifuzorit
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsGrackaTipiDifuzorit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="tipi_grackes_difuzorit", referencedColumnName="id")
+     * })
+     */
+    private $tipiGrackesDifuzorit;
+
+    /**
+     * @var \SettingsGrackaFerromoni
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsGrackaFerromoni")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ferromoni", referencedColumnName="id")
+     * })
+     */
+    private $ferromoni;
+
+    /**
+     * @var \SettingsGrackaKompProdhuse
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsGrackaKompProdhuse")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ferromoni_kompania_prodhuese", referencedColumnName="id")
+     * })
+     */
+    private $ferromoniKompaniaProdhuese;
+
+    /**
+     * @var \SettingsGrackaKompShperndarese
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsGrackaKompShperndarese")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ferromoni_kompania_shperndarese", referencedColumnName="id")
+     * })
+     */
+    private $ferromoniKompaniaShperndarese;
+
+
+}

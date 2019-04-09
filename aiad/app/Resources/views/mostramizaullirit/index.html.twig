@@ -1,0 +1,85 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>Mostra</h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <!-- TABLE: LATEST ORDERS -->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Miza e ullirit</h3>
+                            <div class="box-tools pull-right">
+                                {#<a class="btn btn-info pull-left" href="{{ path('mostramizaullirit_new') }}">Shto të re</a>#}
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <table class="table table-responsive" id="dataTables-2">
+                                <thead>
+            <tr>
+                <th class='nr_column_first'>#</th>
+                <th>Data e vëzhgimit</th>
+                <th>Nr mizave / kurth dhe ditë</th>
+                <th>Nr i femrave të vëzhguara</th>
+                <th>(IF) (%) Femra me vezë </th>
+                <th>(IR) Indeksi i rrezikut</th>
+                <th>Nr mizave / pllakë dhe ditë</th>
+                <th>(%) totale e frutave të pickuara</th>
+                <th>(%)e frutave me mizë të gjallë</th>
+                <th>Fruta me vrimën e daljes së mizës</th>
+                <th>(%) miza parazite</th>
+                <th>Modifiko</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% set i=1 %}
+        {% for mostraMizaUllirit in mostraMizaUllirits %}
+            <tr >
+                <td>{{ i }}</td>
+                <td>{% if mostraMizaUllirit.dataMizaUllirit %}{{ mostraMizaUllirit.dataMizaUllirit|date('d-m-Y') }}{% endif %}</td>
+                <td>{{ mostraMizaUllirit.ratioNrmizaKurthdite }}</td>
+                <td>{{ mostraMizaUllirit.nrFemraVezhguara }}</td>
+                <td>{{ mostraMizaUllirit.perqindjeFemraveze }}</td>
+                <td>{{ mostraMizaUllirit.indeksiRrezikut }}</td>
+                <td>{{ mostraMizaUllirit.ratioNrmizaPllakedite }}</td>
+                <td>{{ mostraMizaUllirit.perqindjeFrutaPickuara }}</td>
+                <td>{{ mostraMizaUllirit.perqindjeFrutaMizegjalle }}</td>
+                <td>{{ mostraMizaUllirit.frutaVrimedaljemize }}</td>
+                <td>{{ mostraMizaUllirit.perqindjeMizaparazite }}</td>
+                <td style="text-align: center">
+                     <a href="{{ path('mostramizaullirit_edit', { 'id': mostraMizaUllirit.id }) }}"><span class="glyphicon glyphicon-edit"></span></a>
+
+                </td>
+
+            </tr>
+            {% set i=i+1 %}
+        {% endfor %}
+        </tbody>
+    </table>
+    </div><!-- /.table-responsive -->
+
+    </div><!-- /.box-body -->
+    </div><!-- /.box -->
+    </div>
+    </section><!-- Main content -->
+    </div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(function(){
+            $('#dataTables-2').DataTable({
+            });
+        });
+    </script>
+{% endblock %}

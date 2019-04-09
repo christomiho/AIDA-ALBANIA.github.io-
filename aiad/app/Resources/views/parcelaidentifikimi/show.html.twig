@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ParcelaIdentifikimi</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ parcelaIdentifikimi.id }}</td>
+            </tr>
+            <tr>
+                <th>Emriparceles</th>
+                <td>{{ parcelaIdentifikimi.emriParceles }}</td>
+            </tr>
+            <tr>
+                <th>Kodi</th>
+                <td>{{ parcelaIdentifikimi.kodi }}</td>
+            </tr>
+            <tr>
+                <th>Kordinatax</th>
+                <td>{{ parcelaIdentifikimi.kordinataX }}</td>
+            </tr>
+            <tr>
+                <th>Kordinatay</th>
+                <td>{{ parcelaIdentifikimi.kordinataY }}</td>
+            </tr>
+            <tr>
+                <th>Lartesia</th>
+                <td>{{ parcelaIdentifikimi.lartesia }}</td>
+            </tr>
+            <tr>
+                <th>Vitiprodhimit</th>
+                <td>{{ parcelaIdentifikimi.vitiProdhimit }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('parcelaidentifikimi_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('parcelaidentifikimi_edit', { 'id': parcelaIdentifikimi.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

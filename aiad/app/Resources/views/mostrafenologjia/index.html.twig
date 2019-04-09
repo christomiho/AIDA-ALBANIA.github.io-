@@ -1,0 +1,87 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Mostra</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Fenologjia</h3>
+                        <div class="box-tools pull-right">
+                            {#<a class="btn btn-info pull-left" href="{{ path('mostrafenologjia_new') }}">Shto të re</a>#}
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table table-responsive" id="dataTables-2">
+                            <thead>
+                            <tr>
+                                <th class="nr_column_first">#</th>
+                                <th>Data e vëzhgimit</th>
+                                <th>Sythe dimërore</th>
+                                <th>Sythe në zhvillim</th>
+                                <th>Lulazimi</th>
+                                <th>Lidhja e frutit</th>
+                                <th>Ngjyra jeshile</th>
+                                <th>Ngjyra verdhë</th>
+                                <th>Ngjyra violet</th>
+                                <th>Ngjyra zezë</th>
+                                <th>Fruta të tejpjekura</th>
+                                <th>Lulëzimi (%)</th>
+                                <th>Modifiko</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% set i=1 %}
+                        {% for mostraFenologjium in mostraFenologjias %}
+                            <tr >
+                                <td>{{ i }}</td>
+                                <td>{% if mostraFenologjium.dataFenologjia %}{{ mostraFenologjium.dataFenologjia|date('d-m-Y') }}{% endif %}</td>
+                                <td>{% if mostraFenologjium.sytheDimerore == 0 %}Jo Prezente{% elseif mostraFenologjium.sytheDimerore == 1 %}Prezente{% else %}Stadi Mbizotërues{% endif %}</td>
+                                <td>{% if mostraFenologjium.sytheZhvillim == 0 %}Jo Prezente{% elseif mostraFenologjium.sytheZhvillim == 1 %}Prezente{% else %}Stadi Mbizotërues{% endif %}</td>
+                                <td>{% if mostraFenologjium.lulezimi == 0 %}Jo Prezente{% elseif mostraFenologjium.lulezimi == 1 %}Prezente{% else %}Stadi Mbizotërues{% endif %}</td>
+                                <td>{% if mostraFenologjium.lidhjaFrutit == 0 %}Jo Prezente{% elseif mostraFenologjium.lidhjaFrutit == 1 %}Prezente{% else %}Stadi Mbizotërues{% endif %}</td>
+                                <td>{% if mostraFenologjium.ngjyreJeshile == 0 %}Jo Prezente{% elseif mostraFenologjium.ngjyreJeshile == 1 %}Prezente{% else %}Stadi Mbizotërues{% endif %}</td>
+                                <td>{% if mostraFenologjium.ngjyreVerdhe == 0 %}Jo Prezente{% elseif mostraFenologjium.ngjyreVerdhe == 1 %}Prezente{% else %}Stadi Mbizotërues{% endif %}</td>
+                                <td>{% if mostraFenologjium.ngjyreViolet == 0 %}Jo Prezente{% elseif mostraFenologjium.ngjyreViolet == 1 %}Prezente{% else %}Stadi Mbizotërues{% endif %}</td>
+                                <td>{% if mostraFenologjium.ngjyreZeze == 0 %}Jo Prezente{% elseif mostraFenologjium.ngjyreZeze == 1 %}Prezente{% else %}Stadi Mbizotërues{% endif %}</td>
+                                <td>{% if mostraFenologjium.frutTejpjekur == 0 %}Jo Prezente{% elseif mostraFenologjium.frutTejpjekur == 1 %}Prezente{% else %}Stadi Mbizotërues{% endif %}</td>
+                                <td>{{   mostraFenologjium.lulezimiPerqindje }}</td>
+                                <td style="text-align: center">
+                                            <a href="{{ path('mostrafenologjia_edit', { 'id': mostraFenologjium.id }) }}">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </a>
+                                </td>
+                            </tr>
+                            {% set i=i+1 %}
+                        {% endfor %}
+                        </tbody>
+                        </table>
+                    </div><!-- /.table-responsive -->
+
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div>
+    </section><!-- Main content -->
+</div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(function(){
+            $('#dataTables-2').DataTable({
+            });
+        });
+    </script>
+{% endblock %}

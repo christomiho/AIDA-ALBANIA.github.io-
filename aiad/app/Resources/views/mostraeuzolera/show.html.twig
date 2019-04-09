@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>MostraEuzolera</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mostraEuzolera.id }}</td>
+            </tr>
+            <tr>
+                <th>Dataeuzolera</th>
+                <td>{% if mostraEuzolera.dataEuzolera %}{{ mostraEuzolera.dataEuzolera|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Ratiojashtqitjepeme</th>
+                <td>{{ mostraEuzolera.ratioJashtqitjePeme }}</td>
+            </tr>
+            <tr>
+                <th>Ratioterriturgracke</th>
+                <td>{{ mostraEuzolera.ratioTerriturGracke }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mostraeuzolera_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('mostraeuzolera_edit', { 'id': mostraEuzolera.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

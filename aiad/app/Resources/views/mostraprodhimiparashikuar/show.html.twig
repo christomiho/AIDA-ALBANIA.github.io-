@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>MostraProdhimiParashikuar</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mostraProdhimiParashikuar.id }}</td>
+            </tr>
+            <tr>
+                <th>Dataprodhimiparashikuar</th>
+                <td>{% if mostraProdhimiParashikuar.dataProdhimiParashikuar %}{{ mostraProdhimiParashikuar.dataProdhimiParashikuar|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Ratiomeslulezimlastartotal</th>
+                <td>{{ mostraProdhimiParashikuar.ratioMeslulezimLastartotal }}</td>
+            </tr>
+            <tr>
+                <th>Ratiomeslulezimfertillastartotal</th>
+                <td>{{ mostraProdhimiParashikuar.ratioMeslulezimfertilLastartotal }}</td>
+            </tr>
+            <tr>
+                <th>Ratiofrutapararenieslastaretotal</th>
+                <td>{{ mostraProdhimiParashikuar.ratioFrutaparareniesLastaretotal }}</td>
+            </tr>
+            <tr>
+                <th>Ratiofrutapasrenieslastaretotal</th>
+                <td>{{ mostraProdhimiParashikuar.ratioFrutapasreniesLastaretotal }}</td>
+            </tr>
+            <tr>
+                <th>Ratiofrutaparareniesdytelastaretotal</th>
+                <td>{{ mostraProdhimiParashikuar.ratioFrutaparareniesdyteLastaretotal }}</td>
+            </tr>
+            <tr>
+                <th>Peshamesatarefrutit</th>
+                <td>{{ mostraProdhimiParashikuar.peshaMesatareFrutit }}</td>
+            </tr>
+            <tr>
+                <th>Parashikimiprodhimitha</th>
+                <td>{{ mostraProdhimiParashikuar.parashikimiProdhimitHa }}</td>
+            </tr>
+            <tr>
+                <th>Parashikimiprodhimitparcele</th>
+                <td>{{ mostraProdhimiParashikuar.parashikimiProdhimitParcele }}</td>
+            </tr>
+            <tr>
+                <th>Perqindjeluleshfertile</th>
+                <td>{{ mostraProdhimiParashikuar.perqindjeLuleshFertile }}</td>
+            </tr>
+            <tr>
+                <th>Gjatesiafrutit</th>
+                <td>{{ mostraProdhimiParashikuar.gjatesiaFrutit }}</td>
+            </tr>
+            <tr>
+                <th>Diametrifrutit</th>
+                <td>{{ mostraProdhimiParashikuar.diametriFrutit }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mostraprodhimiparashikuar_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('mostraprodhimiparashikuar_edit', { 'id': mostraProdhimiParashikuar.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

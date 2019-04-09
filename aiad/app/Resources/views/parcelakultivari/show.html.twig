@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ParcelaKultivari</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ parcelaKultivari.id }}</td>
+            </tr>
+            <tr>
+                <th>Datambjelljevar1</th>
+                <td>{% if parcelaKultivari.dataMbjelljeVar1 %}{{ parcelaKultivari.dataMbjelljeVar1|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datambjelljevar2</th>
+                <td>{% if parcelaKultivari.dataMbjelljeVar2 %}{{ parcelaKultivari.dataMbjelljeVar2|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Siperfaqevar2</th>
+                <td>{{ parcelaKultivari.siperfaqeVar2 }}</td>
+            </tr>
+            <tr>
+                <th>Dendesia</th>
+                <td>{{ parcelaKultivari.dendesia }}</td>
+            </tr>
+            <tr>
+                <th>Diametrikurores</th>
+                <td>{{ parcelaKultivari.diametriKurores }}</td>
+            </tr>
+            <tr>
+                <th>Lartesiakurores</th>
+                <td>{{ parcelaKultivari.lartesiaKurores }}</td>
+            </tr>
+            <tr>
+                <th>Vezhgimetjera</th>
+                <td>{{ parcelaKultivari.vezhgimeTjera }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('parcelakultivari_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('parcelakultivari_edit', { 'id': parcelaKultivari.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

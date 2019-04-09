@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>SettingsTipiKrasitjes</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ settingsTipiKrasitje.id }}</td>
+            </tr>
+            <tr>
+                <th>Tipi</th>
+                <td>{{ settingsTipiKrasitje.tipi }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('settingstipikrasitjes_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('settingstipikrasitjes_edit', { 'id': settingsTipiKrasitje.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

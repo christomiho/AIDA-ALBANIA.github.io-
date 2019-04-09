@@ -1,0 +1,275 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>Aplikime Plehërimi</h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <!-- TABLE: LATEST ORDERS -->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Aplikime Plehërimi</h3>
+                            <div class="box-tools pull-right"></div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            <form role="form" method="post" action="{{ path('post_aplikimi_pleherimi_edit', {'id':ap.id}) }}">
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label for="data">Data e plehërimit</label>
+                                        <input required type="text" value="{% if ap.dataAplikimit %}{{ ap.dataAplikimit|date('Y-m-d') }}{% endif %}" class='form-control input-inline datepicker' data-provide='datepicker' data-date-format='yyyy-mm-dd' id="data" name="data">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tipiAplikimit">Tipi</label>
+                                        <select  class="form-control" name="tipi" id="tipi">
+                                            {% for t in tipi %}
+
+                                                <option value="{{ t.id }}" {% if ap.tipiAplikimit.id == t.id %}selected{% endif %}>{{ t.tipiPleherimit }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="modeli">Modeli</label>
+                                        <select class="form-control" name="modeli" id="modeli">
+                                            {% for m in modeli %}
+                                                <option value="{{ m.id }}" {% if ap.modeliAplikimit.id == m.id %}selected{% endif %}>{{ m.modeliPleherimit }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sipAplikimit">Sipërfaqja e aplikimit</label>
+                                        <input required type="number" value="{{ ap.siperfaqjaAplikimit }}" step="0.1" class="form-control" id="sip" name="sip">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="prod_komercial">Produkti komercial</label>
+                                        <select class="form-control" name="prod_komercial" id="prodKomercial">
+                                            {% for p in produkti %}
+                                                <option value="{{ p.id }}" firma="{{ p.firma }}" lenda="{{ p.lendaAktive.emriLendesAktive }}" {% if ap.produktiKomercialPleherimit.id==p.id %}selected{% endif %}>{{ p.emri }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lendaAktive">Përbërësi</label>
+                                        <input required type="text" readonly class="form-control" id="lenda" name="lenda_aktive">
+                                    </div>
+                                    <div style="height: 50px; margin-top: 2%;cursor:pointer" class="col-md-12">
+                                                <span id="fertilizimPastertia" style="background-color:#00a65a; padding: 10px; color:white">
+                                                    Fertilizim Pastërtia
+                                                </span>
+                                    </div>
+                                    <!-- Ketu do jete tabela e elementeve kimike -->
+                                    <div id="datafertilizimPastertia" class="col-md-12" style="border: 1px solid lightgrey; margin-bottom:2%; display:none">
+                                        <div class="col-md-12">
+                                            <div class="form-group col-md-3 col-lg-offset-3">
+                                                <label for="dozaAplikimit">Doza e aplikimit</label>
+                                                <input required type="number" value="{{ ap.dozaAplikimit }}" step="0.1" class="form-control" id="doza" name="doza">
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label for="njesiaAplikimit">Njësia e aplikimit</label>
+                                                <select  class="form-control" name="njesia" id="njesia">
+                                                    {% for n in njesia %}
+                                                        <option value="{{ n.id }}" {% if ap.njesiaAplikimit.id==n.id %}selected{% endif %}>{{ n.njesia }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <hr>
+                                        <div style="" class="col-md-12">
+                                            <div style="" class="col-md-6" id="grupi1">
+                                                <div class="form-group col-md-4">
+                                                    <label for="nitrat">Nitrat %</label>
+                                                    <input required type="number" value="{{ ap.nitrat }}" step="0.1" class="form-control" id="nitrat" name="nitrat">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="fosfor">Fosfor %</label>
+                                                    <input required type="number"  value="{{ ap.fosfor }}" step="0.1" class="form-control" id="fosfor" name="fosfor">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="potassium">Potassium %</label>
+                                                    <input required type="number" value="{{ ap.potasium }}" step="0.1" class="form-control" id="potassium" name="potassium">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="nitrat_uf">Nitrat UF</label>
+                                                    <input readonly required type="number"  value="{{ ap.nitratUf }}"  step="0.1" class="form-control" id="nitrat_uf" name="nitrat_uf">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="fosfor_uf">Fosfor UF</label>
+                                                    <input readonly required type="number"  value="{{ ap.fosforUf }}"  step="0.1" class="form-control" id="fosfor_uf" name="fosfor_uf">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="potassium_uf">Potassium UF</label>
+                                                    <input readonly required type="number"  value="{{ ap.potasiumUf }}"  step="0.1" class="form-control" id="potassium_uf" name="potassium_uf">
+                                                </div>
+                                            </div>
+                                            <div style="" class="col-md-6" id="grupi2">
+                                                <div class="form-group col-md-4">
+                                                    <label for="kalcium">Kalcium %</label>
+                                                    <input required type="number"  value="{{ ap.calcium }}"  step="0.1" class="form-control" id="kalcium" name="kalcium" >
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="magnez">Magnez %</label>
+                                                    <input required type="number"  value="{{ ap.magnez }}" step="0.1" class="form-control" id="magnez" name="magnez" >
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="squfur">Squfur % </label>
+                                                    <input required type="number"  value="{{ ap.squfur }}"  step="0.1" class="form-control" id="squfur" name="squfur">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="hekur">Hekur %</label>
+                                                    <input required type="number"  value="{{ ap.hekur }}"  step="0.1" class="form-control" id="hekur" name="hekur">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="zink">Zink %</label>
+                                                    <input required type="number"  value="{{ ap.zink }}"  step="0.1" class="form-control" id="zink" name="zink">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="zink">Bakër %</label>
+                                                    <input required type="number"  value="{{ ap.baker }}"  step="0.1" class="form-control" id="baker" name="baker">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="mangan">Mangan %</label>
+                                                    <input required type="number"  value="{{ ap.mangan }}"  step="0.1" class="form-control" id="mangan" name="mangan">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="molibdenum">Molibdenum %</label>
+                                                    <input required type="number"  value="{{ ap.molibdenum }}"  step="0.1" class="form-control" id="molibdenum" name="molibdenum">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="bor">Bor %</label>
+                                                    <input required type="number"  value="{{ ap.bor }}"  step="0.1" class="form-control" id="bor" name="bor">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="klor">Klor %</label>
+                                                    <input required type="number"  value="{{ ap.klor }}"  step="0.1" class="form-control" id="klor" name="klor">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end of tabela e elementeve kimike-->
+
+                                    <div class="form-group">
+                                        <label for="lendaAktive">Firma shpërndarëse</label>
+                                        <input required type="text" readonly class="form-control" id="firma" name="firma">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="justifikimi">Justifikimi i plehërimit</label>
+                                        <select  class="form-control" name="justifikimi" id="justifikimi">
+                                            {% for j in justifikimi %}
+                                                <option value="{{ j.id }}" {% if ap.justifikimiAplikimit.id==j.id %}selected{% endif %}>{{ j.justifikimiPleherimit }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dendesia">Densiteti (kg) (Plehërim me ujitje)</label>
+                                        <input required type="number" value="{{ ap.densitetiPleherimit }}" step="0.1" class="form-control" id="dendesia" name="dendesia">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="pleherimi">Plehërimi i aplikuar(kg) (Plehërim me ujitje)</label>
+                                        <input required type="number" value="{{ ap.aplikimePleherimiAplikuar }}" step="0.1" class="form-control" id="pleherimi" name="pleherimi">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="vezhgime">Vëzhgime</label>
+                                        <textarea class="form-control"  id="vezhgime" name="vezhgime">{{ ap.vezhgime }}</textarea>
+                                    </div>
+                                    <div class="form-group" style="display:none">
+                                        <label for="parcela">Parcela</label>
+                                        <input required type="text" readonly class="form-control" id="parcela" name="parcela">
+                                    </div>
+                                    <input required type="submit" name="submit" class="btn btn-info" value="Modifiko">
+                                </div><!-- /.box-body -->
+                            </form>
+                        </div><!--/.col (left) -->
+                    </div>
+                </div>
+            </div>
+        </section><!-- Main content -->
+    </div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+
+    <script required type="text/javascript">
+        var x = "{{ app.session.get('parcelId') }}";
+        $('#parcela').val(x);
+    </script>
+    <script>
+        $('input [type="text"]').trigger('input');
+
+        $('#fertilizimPastertia').click(function(){
+            $('#datafertilizimPastertia').toggle('blind');
+        });
+
+
+        var initialLenda = $('#prodKomercial option:selected').attr('lenda');
+        $('#lenda').val(initialLenda);
+        $('#prodKomercial').change(function(){
+            var lenda= $('#prodKomercial option:selected').attr('lenda');
+            $('#lenda').val(lenda);
+        });
+
+        var initialFirma = $('#prodKomercial option:selected').attr('firma');
+        $('#firma').val(initialFirma);
+        $('#prodKomercial').change(function(){
+            var firma= $('#prodKomercial option:selected').attr('firma');
+            $('#firma').val(firma);
+        });
+        $('#nitrat').on('input', function(){
+            var doza = $('#doza').val();
+            if(doza!=""){
+                var val = $(this).val();
+                var ratio = doza * val/100;
+                $('#nitrat_uf').val(ratio);
+            }
+        });
+        $('#fosfor').on('input', function(){
+            var doza = $('#doza').val();
+            if(doza!=""){
+                var val = $(this).val();
+                var ratio = doza * val/100;
+                $('#fosfor_uf').val(ratio);
+            }
+        });
+        $('#potassium').on('input', function(){
+            var doza = $('#doza').val();
+            if(doza!=""){
+                var val = $(this).val();
+                var ratio = doza * val/100;
+                $('#potassium_uf').val(ratio);
+            }
+        });
+        $('#doza').on('input', function(){
+            var doza = $(this).val();
+            var nitrat = $('#nitrat').val();
+            var fosfor = $('#fosfor').val();
+            var pot = $('#potassium').val();
+            if(nitrat!=""){
+                var ratio1 = doza * nitrat/100;
+                $('#nitrat_uf').val(ratio1);
+            }
+            if(fosfor!=""){
+                var ratio2 = doza * fosfor/100;
+                $('#fosfor_uf').val(ratio2);
+            }
+            if(pot!=""){
+                var ratio3 = doza * pot/100;
+                $('#potassium_uf').val(ratio3);
+            }
+        });
+
+
+    </script>
+
+
+{% endblock %}

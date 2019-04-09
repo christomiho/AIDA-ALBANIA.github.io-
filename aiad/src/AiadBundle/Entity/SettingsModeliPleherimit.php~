@@ -1,0 +1,32 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * SettingsModeliPleherimit
+ *
+ * @ORM\Table(name="settings_modeli_pleherimit")
+ * @ORM\Entity
+ */
+class SettingsModeliPleherimit
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="modeli_pleherimit", type="string", length=100, nullable=true)
+     */
+    private $modeliPleherimit;
+
+
+}

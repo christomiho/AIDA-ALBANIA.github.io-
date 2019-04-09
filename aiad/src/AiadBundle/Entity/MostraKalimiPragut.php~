@@ -1,0 +1,105 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * MostraKalimiPragut
+ *
+ * @ORM\Table(name="mostra_kalimi_pragut", indexes={@ORM\Index(name="fk_parcela_kalimi_pragut_idx", columns={"parcela"})})
+ * @ORM\Entity
+ */
+class MostraKalimiPragut
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_kalimipragut", type="date", nullable=true)
+     */
+    private $dataKalimipragut;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="kocinija", type="boolean", nullable=true)
+     */
+    private $kocinija;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="prais_filofage", type="boolean", nullable=true)
+     */
+    private $praisFilofage;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="prais_antofage", type="boolean", nullable=true)
+     */
+    private $praisAntofage;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="prais_karpofage", type="boolean", nullable=true)
+     */
+    private $praisKarpofage;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="prais_stadi_larvor", type="boolean", nullable=true)
+     */
+    private $praisStadiLarvor;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="miza", type="boolean", nullable=true)
+     */
+    private $miza;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="barrenijo", type="boolean", nullable=true)
+     */
+    private $barrenijo;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="syri_palloit", type="boolean", nullable=true)
+     */
+    private $syriPalloit;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="verticilium", type="boolean", nullable=true)
+     */
+    private $verticilium;
+
+    /**
+     * @var \ParcelaIdentifikimi
+     *
+     * @ORM\ManyToOne(targetEntity="ParcelaIdentifikimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parcela", referencedColumnName="id")
+     * })
+     */
+    private $parcela;
+
+
+}

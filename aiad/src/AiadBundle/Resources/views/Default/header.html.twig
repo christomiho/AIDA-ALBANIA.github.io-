@@ -1,0 +1,68 @@
+<header class="main-header">
+<!-- Logo -->
+<a href="#" class="logo">
+    <span class="logo-mini"><b><i class="glyphicon glyphicon-tree-deciduous"></i></b></span>
+    <span class="logo-lg"><b>AIAD &nbsp; <i class="glyphicon glyphicon-tree-deciduous"></i></b></span>
+</a>
+<!-- Header Navbar: style can be found in header.less -->
+<nav class="navbar navbar-static-top" role="navigation">
+<!-- Sidebar toggle button-->
+    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+    </a>
+    {% if is_granted('ROLE_OPERATOR') %}
+        {% if app.session.get('parcelId') is empty %}
+            <div class="col-md-9" style="text-align: center; font-size: 1.3em; float: left; cursor:pointer">
+                <span  style="color: #f5f5f5"  >
+                    Nuk është zgjedhur ende një parcelë
+                </span>
+            </div>
+            {% else %}
+                <div class="col-md-9" style="text-align: center; font-size: 1.3em; float: left; cursor:pointer">
+                <span  style="color: #f5f5f5"  >
+                    Parcela e zgjedhur: <b style="text-decoration-color: #f5f5f5" > {{ app.session.get('emriParceles') }}</b>
+                    <br/>
+                    Kodi:  <b>{{ app.session.get('kodiParceles') }}</b>
+                </span>
+                </div>
+        {% endif %}
+    {% endif %}
+<div class="navbar-custom-menu">
+
+<ul class="nav navbar-nav">
+
+    <li class="dropdown user user-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <img src="{{ asset('assets/') }}dist/img/user-img.png" class="user-image" alt="User Image">
+        <span class="hidden-xs">{{ app.user.name }} {{ app.user.surname }}</span>
+    </a>
+    <ul class="dropdown-menu">
+        <!-- User image -->
+        <li class="user-header">
+            <img src="{{ asset('assets/') }}dist/img/user-img.png" class="img-circle" alt="User Image">
+            <p>
+                {{ app.user.name }} {{ app.user.surname }} - {{ app.user.role }}
+            </p>
+        </li>
+
+        <!-- Menu Footer-->
+        <li class="user-footer">
+            <div class="pull-left">
+                <a href="{{ path('userProfile', {'id': app.user.id} ) }}" class="btn btn-default btn-flat">Profili</a>
+            </div>
+            <div class="pull-right">
+                <a href="{{ path('logout') }}" class="btn btn-default btn-flat">Dilni</a>
+            </div>
+        </li>
+    </ul>
+</li>
+    {% if is_granted('ROLE_ADMIN') %}
+<li>
+    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+</li>
+{% endif %}
+
+</ul>
+</div>
+</nav>
+</header>

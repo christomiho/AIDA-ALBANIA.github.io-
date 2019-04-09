@@ -1,0 +1,98 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * User
+ *
+ * @ORM\Table(name="user", indexes={@ORM\Index(name="fk_role_id_idx", columns={"role"})})
+ * @ORM\Entity
+ */
+class User
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=100, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="surname", type="string", length=100, nullable=true)
+     */
+    private $surname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=100, nullable=true)
+     */
+    private $username;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=150, nullable=true)
+     */
+    private $password;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=100, nullable=false)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresa_banimit", type="string", length=200, nullable=true)
+     */
+    private $adresaBanimit;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_regjistrimit", type="date", nullable=true)
+     */
+    private $dataRegjistrimit;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="forgot_password", type="string", length=150, nullable=true)
+     */
+    private $forgotPassword;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="active", type="integer", nullable=true)
+     */
+    private $active;
+
+    /**
+     * @var \UserRole
+     *
+     * @ORM\ManyToOne(targetEntity="UserRole")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="role", referencedColumnName="id")
+     * })
+     */
+    private $role;
+
+
+}

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>NderhyrjetVjelja</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ nderhyrjetVjelja.id }}</td>
+            </tr>
+            <tr>
+                <th>Datavjeljes</th>
+                <td>{% if nderhyrjetVjelja.dataVjeljes %}{{ nderhyrjetVjelja.dataVjeljes|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Rendimenti</th>
+                <td>{{ nderhyrjetVjelja.rendimenti }}</td>
+            </tr>
+            <tr>
+                <th>Indeksipjekjes</th>
+                <td>{{ nderhyrjetVjelja.indeksiPjekjes }}</td>
+            </tr>
+            <tr>
+                <th>Perqindjerendimentiyndyror</th>
+                <td>{{ nderhyrjetVjelja.perqindjeRendimentiYndyror }}</td>
+            </tr>
+            <tr>
+                <th>Perqindjeaciditeti</th>
+                <td>{{ nderhyrjetVjelja.perqindjeAciditeti }}</td>
+            </tr>
+            <tr>
+                <th>Vezhgime</th>
+                <td>{{ nderhyrjetVjelja.vezhgime }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('nderhyrjetvjelja_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('nderhyrjetvjelja_edit', { 'id': nderhyrjetVjelja.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

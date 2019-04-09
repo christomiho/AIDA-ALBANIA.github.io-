@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>SettingsGrackaTipi</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ settingsGrackaTipi.id }}</td>
+            </tr>
+            <tr>
+                <th>Tipi</th>
+                <td>{{ settingsGrackaTipi.tipi }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('settingsgrackatipi_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('settingsgrackatipi_edit', { 'id': settingsGrackaTipi.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

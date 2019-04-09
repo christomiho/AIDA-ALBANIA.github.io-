@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>MostraNematodat</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mostraNematodat.id }}</td>
+            </tr>
+            <tr>
+                <th>Datanematodat</th>
+                <td>{% if mostraNematodat.dataNematodat %}{{ mostraNematodat.dataNematodat|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Pemeprekura</th>
+                <td>{{ mostraNematodat.pemePrekura }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mostranematodat_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('mostranematodat_edit', { 'id': mostraNematodat.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

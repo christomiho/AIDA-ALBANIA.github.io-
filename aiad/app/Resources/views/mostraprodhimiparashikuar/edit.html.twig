@@ -1,0 +1,67 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>Mostra</h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <!-- TABLE: LATEST ORDERS -->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Prodhimi i parashikuar</h3>
+                            <div class="box-tools pull-right">
+                                {#<a class="btn btn-info pull-left" href="{{ path('settingsujitje_new') }}">Shto të re</a>#}
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">
+                            {{ form_start(edit_form) }}
+                            {{ form_widget(edit_form) }}
+                            <input class="btn btn-success pull-right" type="submit" value="Modifiko" />
+                            {{ form_end(edit_form) }}
+                            {{ form_start(delete_form) }}
+                            <input type="submit" class="btn btn-danger pull-right" style="margin-right: 10px" value="Fshi">
+                            {{ form_end(delete_form) }}
+                            <a class="btn btn-info pull-left" href="{{ path('mostraprodhimiparashikuar_index') }}">Kthehu tek lista</a>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div>
+            </div>
+        </section><!-- Main content -->
+    </div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+
+{% endblock %}
+{% block javascripts %}
+
+    <script type="text/javascript">
+        var x = "{{ app.session.get('parcelId') }}";
+        $('#mostra_prodhimi_parashikuar_parcela').closest('.form-group').css('display', 'none');
+        $('#mostra_prodhimi_parashikuar_parcela option[value = '+ x +']').attr('selected','selected');
+
+        var sip_ha="{{ app.session.get('sip_ha') }}";
+        $('#mostra_prodhimi_parashikuar_parashikimiProdhimitParcele').attr('readonly','readonly');
+
+        var prodh_ha= $('#mostra_prodhimi_parashikuar_parashikimiProdhimitHa').val();
+        var prodh_par=prodh_ha*sip_ha;
+        $('#mostra_prodhimi_parashikuar_parashikimiProdhimitParcele').val(prodh_par);
+
+        $('#mostra_prodhimi_parashikuar_parashikimiProdhimitHa').on('input',function(){
+            var prodh_ha2= $('#mostra_prodhimi_parashikuar_parashikimiProdhimitHa').val();
+            var prodh_par2=prodh_ha2*sip_ha;
+            $('#mostra_prodhimi_parashikuar_parashikimiProdhimitParcele').val(prodh_par2);
+        });
+
+    </script>
+
+
+{% endblock %}

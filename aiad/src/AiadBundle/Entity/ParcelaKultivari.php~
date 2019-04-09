@@ -1,0 +1,134 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ParcelaKultivari
+ *
+ * @ORM\Table(name="parcela_kultivari", indexes={@ORM\Index(name="fk_parcela_kultivari_idx", columns={"parcela"}), @ORM\Index(name="fk_distanca_kultivari_idx", columns={"distanca"}), @ORM\Index(name="fk_kembe_peme_kultivari_idx", columns={"nr_kembe_peme"}), @ORM\Index(name="fk_forma_kurores_kultivari_idx", columns={"forma_kurores"}), @ORM\Index(name="fk_varieteti_kryesor_idx", columns={"varieteti_paresor"}), @ORM\Index(name="fk_varieteti_dytesor_idx", columns={"varieteti_dytesor"})})
+ * @ORM\Entity
+ */
+class ParcelaKultivari
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_mbjellje_var1", type="date", nullable=true)
+     */
+    private $dataMbjelljeVar1;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_mbjellje_var2", type="date", nullable=true)
+     */
+    private $dataMbjelljeVar2;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="siperfaqe_var2", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $siperfaqeVar2;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="dendesia", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $dendesia;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="diametri_kurores", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $diametriKurores;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="lartesia_kurores", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $lartesiaKurores;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="vezhgime_tjera", type="text", nullable=true)
+     */
+    private $vezhgimeTjera;
+
+    /**
+     * @var \ParcelaIdentifikimi
+     *
+     * @ORM\ManyToOne(targetEntity="ParcelaIdentifikimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parcela", referencedColumnName="id")
+     * })
+     */
+    private $parcela;
+
+    /**
+     * @var \SettingsDistanca
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsDistanca")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="distanca", referencedColumnName="id")
+     * })
+     */
+    private $distanca;
+
+    /**
+     * @var \SettingsKembePeme
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsKembePeme")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="nr_kembe_peme", referencedColumnName="id")
+     * })
+     */
+    private $nrKembePeme;
+
+    /**
+     * @var \SettingsFormaKurores
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsFormaKurores")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="forma_kurores", referencedColumnName="id")
+     * })
+     */
+    private $formaKurores;
+
+    /**
+     * @var \Kultivaret
+     *
+     * @ORM\ManyToOne(targetEntity="Kultivaret")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="varieteti_paresor", referencedColumnName="id")
+     * })
+     */
+    private $varietetiParesor;
+
+    /**
+     * @var \Kultivaret
+     *
+     * @ORM\ManyToOne(targetEntity="Kultivaret")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="varieteti_dytesor", referencedColumnName="id")
+     * })
+     */
+    private $varietetiDytesor;
+
+
+}

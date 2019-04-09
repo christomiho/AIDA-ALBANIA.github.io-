@@ -1,0 +1,112 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * MostraMizaBiologjike
+ *
+ * @ORM\Table(name="mostra_miza_biologjike", indexes={@ORM\Index(name="fk_parcela_miza_biologjike_idx", columns={"parcela"})})
+ * @ORM\Entity
+ */
+class MostraMizaBiologjike
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_miza_biologjike", type="date", nullable=true)
+     */
+    private $dataMizaBiologjike;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="fruta_vezhguara", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $frutaVezhguara;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="fruta_pickuara", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $frutaPickuara;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_pickimepaveze", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioPickimepaveze;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_vezetegjalla", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioVezetegjalla;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_vezetevdekura", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioVezetevdekura;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_larvategjalla", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioLarvategjalla;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_larvatengordhura", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioLarvatengordhura;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_nimfategjalla", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioNimfategjalla;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_nimfatengordhura", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioNimfatengordhura;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_galeribosh", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioGaleribosh;
+
+    /**
+     * @var \ParcelaIdentifikimi
+     *
+     * @ORM\ManyToOne(targetEntity="ParcelaIdentifikimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parcela", referencedColumnName="id")
+     * })
+     */
+    private $parcela;
+
+
+}

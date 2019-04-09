@@ -1,0 +1,70 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * MostraTjeraNdihmese
+ *
+ * @ORM\Table(name="mostra_tjera_ndihmese", indexes={@ORM\Index(name="fk_parcela_tjera_ndihmese_idx", columns={"parcela"})})
+ * @ORM\Entity
+ */
+class MostraTjeraNdihmese
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_tjera_ndihmese", type="date", nullable=true)
+     */
+    private $dataTjeraNdihmese;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="perqindje_skutelista_territurparazite", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $perqindjeSkutelistaTerriturparazite;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="perqindje_metafikus_kocinijaparazite", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $perqindjeMetafikusKocinijaparazite;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_anthokoris_kocinijaparazite_njesimostre", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioAnthokorisKocinijaparaziteNjesimostre;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_ageniaspis_territur_grackedite", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioAgeniaspisTerriturGrackedite;
+
+    /**
+     * @var \ParcelaIdentifikimi
+     *
+     * @ORM\ManyToOne(targetEntity="ParcelaIdentifikimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parcela", referencedColumnName="id")
+     * })
+     */
+    private $parcela;
+
+
+}

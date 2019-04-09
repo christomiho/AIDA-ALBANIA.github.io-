@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>SettingsMtokesSpeciamb</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ settingsMtokesSpeciamb.id }}</td>
+            </tr>
+            <tr>
+                <th>Speciambjell</th>
+                <td>{{ settingsMtokesSpeciamb.speciaMbjell }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('settingsmtokesspeciamb_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('settingsmtokesspeciamb_edit', { 'id': settingsMtokesSpeciamb.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

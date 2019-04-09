@@ -1,0 +1,105 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * MostraMizaUllirit
+ *
+ * @ORM\Table(name="mostra_miza_ullirit", indexes={@ORM\Index(name="fk_parcela_miza_ullirit_idx", columns={"parcela"})})
+ * @ORM\Entity
+ */
+class MostraMizaUllirit
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_miza_ullirit", type="date", nullable=true)
+     */
+    private $dataMizaUllirit;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_nrmiza_kurthdite", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioNrmizaKurthdite;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="nr_femra_vezhguara", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $nrFemraVezhguara;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="perqindje_femraveze", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $perqindjeFemraveze;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="indeksi_rrezikut", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $indeksiRrezikut;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio_nrmiza_pllakedite", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $ratioNrmizaPllakedite;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="perqindje_fruta_pickuara", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $perqindjeFrutaPickuara;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="perqindje_fruta_mizegjalle", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $perqindjeFrutaMizegjalle;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="fruta_vrimedaljemize", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $frutaVrimedaljemize;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="perqindje_mizaparazite", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $perqindjeMizaparazite;
+
+    /**
+     * @var \ParcelaIdentifikimi
+     *
+     * @ORM\ManyToOne(targetEntity="ParcelaIdentifikimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parcela", referencedColumnName="id")
+     * })
+     */
+    private $parcela;
+
+
+}

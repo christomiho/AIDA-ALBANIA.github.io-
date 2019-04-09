@@ -1,0 +1,89 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>Mostra</h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <!-- TABLE: LATEST ORDERS -->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Insekte të tjera</h3>
+
+                            <div class="box-tools pull-right">
+                                {#<a class="btn btn-info pull-left" href="{{ path('mostrainsektetjera_new') }}">Shto të re</a>#}
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table class="table table-responsive" id="dataTables-2">
+                                <thead>
+                                <tr>
+                                    <th class='nr_column_first'>#</th>
+                                    <th>Data e vëzhgimit</th>
+                                    <th>Pambuku: Forma të gjalla / Lule</th>
+                                    <th>Aranjelo: (%) e lastarëve të prekur</th>
+                                    <th>Aranjelo: Nr i larvave gjatë shkundjes</th>
+                                    <th>Gusano të bardhë: Të rritur / Gracka dhe ditë</th>
+                                    <th>Gusano të bardhë: Nr i vrimave dalëse / Pemë</th>
+                                    <th>Gusano të bardhë: (%) e pemëve me simptoma</th>
+                                    <th>Mushkonja e kurorës: Të rritur / Gracka dhe ditë</th>
+                                    <th>Mushkonja e kurorës: Degëza të prekura / Pemë</th>
+                                    <th>Zeusera: Të rritur / Gracka dhe ditë</th>
+                                    <th>Modifiko</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% set i=1 %}
+                                {% for mostraInsekteTjera in mostraInsekteTjeras %}
+                                    <tr>
+                                        <td>{{ i }}</td>
+                                        <td>{% if mostraInsekteTjera.dataInsekteTjera %}{{ mostraInsekteTjera.dataInsekteTjera|date('d-m-Y') }}{% endif %}</td>
+                                        <td>{{ mostraInsekteTjera.ratioPambukuFormagjallaLule }}</td>
+                                        <td>{{ mostraInsekteTjera.perqindjeAranjeloLastarprekur }}</td>
+                                        <td>{{ mostraInsekteTjera.aranjeloLarvagjateshkundjes }}</td>
+                                        <td>{{ mostraInsekteTjera.ratioGusanobardheTerriturGrackadite }}</td>
+                                        <td>{{ mostraInsekteTjera.ratioGusanobardheVrimadaljePeme }}</td>
+                                        <td>{{ mostraInsekteTjera.perqindjeGusanobardhePememesimptoma }}</td>
+                                        <td>{{ mostraInsekteTjera.ratioMushkonjakuroresTerriturGrackedite }}</td>
+                                        <td>{{ mostraInsekteTjera.ratioMushkonjakuroresDegezaprekuraPeme }}</td>
+                                        <td>{{ mostraInsekteTjera.ratioZeuseraTerriturGrackedite }}</td>
+                                        <td style="text-align: center">
+                                            <a href="{{ path('mostrainsektetjera_edit', { 'id': mostraInsekteTjera.id }) }}"><span
+                                                        class="glyphicon glyphicon-edit"></span></a>
+                                        </td>
+                                    </tr>
+                                    {% set i=i+1 %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </section>
+        <!-- Main content -->
+    </div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(function () {
+            $('#dataTables-2').DataTable({});
+        });
+    </script>
+{% endblock %}

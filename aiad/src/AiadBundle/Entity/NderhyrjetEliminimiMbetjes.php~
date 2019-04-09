@@ -1,0 +1,69 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * NderhyrjetEliminimiMbetjes
+ *
+ * @ORM\Table(name="nderhyrjet_eliminimi_mbetjes", indexes={@ORM\Index(name="fk_lloji_mbetjeve_idx", columns={"lloji_mbetjeve"}), @ORM\Index(name="fk_menyra_eleminimit_mbetje_idx", columns={"menyra_eliminimit"}), @ORM\Index(name="fk_parcela_mbetje_idx", columns={"parcela"})})
+ * @ORM\Entity
+ */
+class NderhyrjetEliminimiMbetjes
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_eliminimit", type="date", nullable=true)
+     */
+    private $dataEliminimit;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="vezhgime", type="string", length=200, nullable=true)
+     */
+    private $vezhgime;
+
+    /**
+     * @var \SettingsLlojiMbetjeve
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsLlojiMbetjeve")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="lloji_mbetjeve", referencedColumnName="id")
+     * })
+     */
+    private $llojiMbetjeve;
+
+    /**
+     * @var \SettingsMenyraEleminimit
+     *
+     * @ORM\ManyToOne(targetEntity="SettingsMenyraEleminimit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="menyra_eliminimit", referencedColumnName="id")
+     * })
+     */
+    private $menyraEliminimit;
+
+    /**
+     * @var \ParcelaIdentifikimi
+     *
+     * @ORM\ManyToOne(targetEntity="ParcelaIdentifikimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parcela", referencedColumnName="id")
+     * })
+     */
+    private $parcela;
+
+
+}

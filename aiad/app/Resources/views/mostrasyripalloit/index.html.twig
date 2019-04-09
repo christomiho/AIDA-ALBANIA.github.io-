@@ -1,0 +1,75 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Mostra</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Syri i palloit</h3>
+                        <div class="box-tools pull-right">
+                            {#<a class="btn btn-info pull-left" href="{{ path('mostrasyripalloit_new') }}">Shto të Re</a>#}
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table table-responsive" id="dataTables-2">
+                            <thead>
+                                <tr>
+                                    <th class='nr_column_first'>#</th>
+                                    <th>Data e vëzhgimit</th>
+                                    <th>(%) e lastarëve të infektuar</th>
+                                    <th>(%) e gjetheve të infektuara</th>
+                                    <th>(%) e dëmtuesit yë inkubuar në gjethet</th>
+                                    <th>(%) e fletëve me simptoma</th>
+                                    <th>Kushte të favorshme</th>
+                                    <th>Modifiko</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% set i=1 %}
+                            {% for mostraSyriPalloit in mostraSyriPalloits %}
+                                <tr>
+                                    <td>{{ i }}</td>
+                                    <td>{% if mostraSyriPalloit.dataSyriPalloit %}{{ mostraSyriPalloit.dataSyriPalloit|date('d-m-Y') }}{% endif %}</td>
+                                    <td>{{ mostraSyriPalloit.perqindjeLastareinfektuar }}</td>
+                                    <td>{{ mostraSyriPalloit.perqindjeGjetheInfektuara }}</td>
+                                    <td>{{ mostraSyriPalloit.perqindjeDemtuesInkubuarGjethe }}</td>
+                                    <td>{{ mostraSyriPalloit.perqindjeFletaSimptoma }}</td>
+                                    <td>{{ mostraSyriPalloit.kushteFavorshme }}</td>
+                                    <td>
+                                        <a href="{{ path('mostrasyripalloit_edit', { 'id': mostraSyriPalloit.id }) }}"><span class="glyphicon glyphicon-edit"></span></a>
+                                    </td>
+                                </tr>
+                                {% set i=i+1 %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div><!-- /.table-responsive -->
+
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div>
+    </section><!-- Main content -->
+</div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(function(){
+            $('#dataTables-2').DataTable({
+            });
+        });
+    </script>
+{% endblock %}

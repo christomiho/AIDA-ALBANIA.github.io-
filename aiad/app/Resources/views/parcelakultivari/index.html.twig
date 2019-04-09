@@ -1,0 +1,90 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Parcela Kultivari</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Parcela Kultivari</h3>
+                        <div class="box-tools pull-right">
+                            <a class="btn btn-info pull-left" href="{{ path('parcelakultivari_new') }}">Shto të re</a>
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table table-responsive" id="dataTables-2">
+        <thead>
+            <tr>
+                <th class='nr_column_first'>#</th>
+                <th>Varieteti parësor (I)</th>
+                <th>Data e mbjelljes Var I</th>
+                <th>Varieteti dytësor (II)</th>
+                <th>Data e mbjelljes Var II</th>
+                <th>Sip. e mbjellë e var. II (ha)</th>
+                <th>Distanca (m x m)</th>
+                <th>Dendësia (pemë / ha)</th>
+                <th>Nr i këmbëve për pemë</th>
+                <th>Forma e kurorës</th>
+                <th>Diametri i kurorës (m)</th>
+                <th>Lartësia e kurorës (m)</th>
+                <th>Vëzhgime të tjera</th>
+                <th>Modifiko</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% set i=1 %}
+        {% for parcelaKultivari in parcelaKultivaris %}
+            <tr>
+                <td>{{ i }}</td>
+                <td>{{ parcelaKultivari.varietetiParesor }}</td>
+                <td>{% if parcelaKultivari.dataMbjelljeVar1 %}{{ parcelaKultivari.dataMbjelljeVar1|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ parcelaKultivari.varietetiDytesor }}</td>
+                <td>{% if parcelaKultivari.dataMbjelljeVar2 %}{{ parcelaKultivari.dataMbjelljeVar2|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ parcelaKultivari.siperfaqeVar2 }}</td>
+                <td>{{ parcelaKultivari.distanca }}</td>
+                <td>{{ parcelaKultivari.dendesia }}</td>
+                <td>{{ parcelaKultivari.nrKembePeme }}</td>
+                <td>{{ parcelaKultivari.formaKurores }}</td>
+                <td>{{ parcelaKultivari.diametriKurores }}</td>
+                <td>{{ parcelaKultivari.lartesiaKurores }}</td>
+                <td>{{ parcelaKultivari.vezhgimeTjera }}</td>
+                <td>
+                     <a href="{{ path('parcelakultivari_edit', { 'id': parcelaKultivari.id }) }}">
+                         <span class="glyphicon glyphicon-edit">
+                         </span>
+                     </a>
+                </td>
+            </tr>
+            {% set i=i+1 %}
+        {% endfor %}
+        </tbody>
+                        </table>
+                    </div><!-- /.table-responsive -->
+
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div>
+    </section><!-- Main content -->
+</div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(function(){
+            $('#dataTables-2').DataTable({
+            });
+        });
+    </script>
+{% endblock %}

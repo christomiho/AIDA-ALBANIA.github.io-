@@ -1,0 +1,32 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * SettingsKembePeme
+ *
+ * @ORM\Table(name="settings_kembe_peme")
+ * @ORM\Entity
+ */
+class SettingsKembePeme
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nr_kembe_peme", type="integer", nullable=true)
+     */
+    private $nrKembePeme;
+
+
+}

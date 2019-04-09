@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>SettingsPleherimiJustifikim</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ settingsPleherimiJustifikim.id }}</td>
+            </tr>
+            <tr>
+                <th>Justifikimipleherimit</th>
+                <td>{{ settingsPleherimiJustifikim.justifikimiPleherimit }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('settingspleherimijustifikim_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('settingspleherimijustifikim_edit', { 'id': settingsPleherimiJustifikim.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

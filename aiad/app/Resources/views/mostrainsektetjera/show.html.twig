@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>MostraInsekteTjera</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mostraInsekteTjera.id }}</td>
+            </tr>
+            <tr>
+                <th>Datainsektetjera</th>
+                <td>{% if mostraInsekteTjera.dataInsekteTjera %}{{ mostraInsekteTjera.dataInsekteTjera|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Ratiopambukuformagjallalule</th>
+                <td>{{ mostraInsekteTjera.ratioPambukuFormagjallaLule }}</td>
+            </tr>
+            <tr>
+                <th>Perqindjearanjelolastarprekur</th>
+                <td>{{ mostraInsekteTjera.perqindjeAranjeloLastarprekur }}</td>
+            </tr>
+            <tr>
+                <th>Aranjelolarvagjateshkundjes</th>
+                <td>{{ mostraInsekteTjera.aranjeloLarvagjateshkundjes }}</td>
+            </tr>
+            <tr>
+                <th>Ratiogusanobardheterriturgrackadite</th>
+                <td>{{ mostraInsekteTjera.ratioGusanobardheTerriturGrackadite }}</td>
+            </tr>
+            <tr>
+                <th>Ratiogusanobardhevrimadaljepeme</th>
+                <td>{{ mostraInsekteTjera.ratioGusanobardheVrimadaljePeme }}</td>
+            </tr>
+            <tr>
+                <th>Perqindjegusanobardhepememesimptoma</th>
+                <td>{{ mostraInsekteTjera.perqindjeGusanobardhePememesimptoma }}</td>
+            </tr>
+            <tr>
+                <th>Ratiomushkonjakuroresterriturgrackedite</th>
+                <td>{{ mostraInsekteTjera.ratioMushkonjakuroresTerriturGrackedite }}</td>
+            </tr>
+            <tr>
+                <th>Ratiomushkonjakuroresdegezaprekurapeme</th>
+                <td>{{ mostraInsekteTjera.ratioMushkonjakuroresDegezaprekuraPeme }}</td>
+            </tr>
+            <tr>
+                <th>Ratiozeuseraterriturgrackedite</th>
+                <td>{{ mostraInsekteTjera.ratioZeuseraTerriturGrackedite }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mostrainsektetjera_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('mostrainsektetjera_edit', { 'id': mostraInsekteTjera.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

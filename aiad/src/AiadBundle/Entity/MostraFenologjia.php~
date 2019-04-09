@@ -1,0 +1,112 @@
+<?php
+
+namespace AiadBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * MostraFenologjia
+ *
+ * @ORM\Table(name="mostra_fenologjia", indexes={@ORM\Index(name="fk_parcela_fenologji_idx", columns={"parcela"})})
+ * @ORM\Entity
+ */
+class MostraFenologjia
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_fenologjia", type="date", nullable=true)
+     */
+    private $dataFenologjia;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="sythe_dimerore", type="boolean", nullable=true)
+     */
+    private $sytheDimerore;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="sythe_zhvillim", type="boolean", nullable=true)
+     */
+    private $sytheZhvillim;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="lulezimi", type="boolean", nullable=true)
+     */
+    private $lulezimi;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="lidhja_frutit", type="boolean", nullable=true)
+     */
+    private $lidhjaFrutit;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ngjyre_jeshile", type="boolean", nullable=true)
+     */
+    private $ngjyreJeshile;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ngjyre_verdhe", type="boolean", nullable=true)
+     */
+    private $ngjyreVerdhe;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ngjyre_violet", type="boolean", nullable=true)
+     */
+    private $ngjyreViolet;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ngjyre_zeze", type="boolean", nullable=true)
+     */
+    private $ngjyreZeze;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="frut_tejpjekur", type="boolean", nullable=true)
+     */
+    private $frutTejpjekur;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="lulezimi_perqindje", type="boolean", nullable=true)
+     */
+    private $lulezimiPerqindje;
+
+    /**
+     * @var \ParcelaIdentifikimi
+     *
+     * @ORM\ManyToOne(targetEntity="ParcelaIdentifikimi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parcela", referencedColumnName="id")
+     * })
+     */
+    private $parcela;
+
+
+}

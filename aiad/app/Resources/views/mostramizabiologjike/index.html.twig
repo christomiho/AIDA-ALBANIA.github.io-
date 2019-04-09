@@ -1,0 +1,86 @@
+{% extends 'AiadBundle:Default:base.html.twig' %}
+
+{% block content %}
+    {% include 'AiadBundle:Default:header.html.twig' %}
+    {% include 'AiadBundle:Default:left_sidebar.html.twig' %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>Mostra</h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Miza biologjike</h3>
+                        <div class="box-tools pull-right">
+                            {#<a class="btn btn-info pull-left" href="{{ path('mostramizabiologjike_new') }}">Shto të re</a>#}
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table table-responsive" id="dataTables-2">
+                            <thead>
+                            <tr>
+                <th>Id</th>
+                <th >Data e vëzhgimit</th>
+                <th >Fruta të vëzhguara</th>
+                <th >Fruta të pickuara</th>
+                <th >Pickime pa vezë / 100 fruta</th>
+                <th >Vezë të gjalla / 100 fruta</th>
+                <th >Vezë të vdekura / 100 fruta</th>
+                <th >Larva të gjalla / 100 fruta</th>
+                <th >Larva të ngordhura / 100 fruta</th>
+                <th >Nimfat e gjalla / 100 fruta</th>
+                <th >Nimfat e ngordhura / 100 fruta</th>
+                <th >Galeri të lëna bosh / 100 fruta</th>
+                <th >Modifioko</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% set i=1 %}
+        {% for mostraMizaBiologjike in mostraMizaBiologjikes %}
+            <tr >
+                <td>{{ i }}</td>
+                <td>{% if mostraMizaBiologjike.dataMizaBiologjike %}{{ mostraMizaBiologjike.dataMizaBiologjike|date('d-m-Y') }}{% endif %}</td>
+                <td>{{ mostraMizaBiologjike.frutaVezhguara }}</td>
+                <td>{{ mostraMizaBiologjike.frutaPickuara }}</td>
+                <td>{{ mostraMizaBiologjike.ratioPickimepaveze }}</td>
+                <td>{{ mostraMizaBiologjike.ratioVezetegjalla }}</td>
+                <td>{{ mostraMizaBiologjike.ratioVezetevdekura }}</td>
+                <td>{{ mostraMizaBiologjike.ratioLarvategjalla }}</td>
+                <td>{{ mostraMizaBiologjike.ratioLarvatengordhura }}</td>
+                <td>{{ mostraMizaBiologjike.ratioNimfategjalla }}</td>
+                <td>{{ mostraMizaBiologjike.ratioNimfatengordhura }}</td>
+                <td>{{ mostraMizaBiologjike.ratioGaleribosh }}</td>
+                <td>
+                            <a href="{{ path('mostramizabiologjike_edit', { 'id': mostraMizaBiologjike.id }) }}"><span class="glyphicon glyphicon-edit"></span></a>
+
+                </td>
+            </tr>
+            {% set i=i+1 %}
+        {% endfor %}
+        </tbody>
+                        </table>
+                    </div><!-- /.table-responsive -->
+
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div>
+    </section><!-- Main content -->
+</div><!-- content wrapper-->
+    {% include 'AiadBundle:Default:right_sidebar.html.twig' %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(function(){
+            $('#dataTables-2').DataTable({
+            });
+        });
+    </script>
+{% endblock %}

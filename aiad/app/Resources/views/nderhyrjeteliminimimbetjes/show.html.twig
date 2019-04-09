@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>NderhyrjetEliminimiMbetjes</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ nderhyrjetEliminimiMbetje.id }}</td>
+            </tr>
+            <tr>
+                <th>Dataeliminimit</th>
+                <td>{% if nderhyrjetEliminimiMbetje.dataEliminimit %}{{ nderhyrjetEliminimiMbetje.dataEliminimit|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Vezhgime</th>
+                <td>{{ nderhyrjetEliminimiMbetje.vezhgime }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('nderhyrjeteliminimimbetjes_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('nderhyrjeteliminimimbetjes_edit', { 'id': nderhyrjetEliminimiMbetje.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
